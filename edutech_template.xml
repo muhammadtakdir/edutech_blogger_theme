@@ -1,0 +1,2941 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='1.0.0' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <title><data:view.title.escaped/></title>
+    <b:include data='blog' name='all-head-content'/>
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&amp;family=Roboto:wght@400;500;700;900&amp;family=Montserrat:wght@400;600;700;800&amp;display=swap' rel='stylesheet'/>
+    <!-- Font Awesome 6 -->
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet'/>
+    <!-- jQuery -->
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'/>
+    <!-- Slick Slider CSS -->
+    <link href='https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' rel='stylesheet'/>
+    <link href='https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css' rel='stylesheet'/>
+
+    <b:skin version='1.0.0'><![CDATA[
+/*
+<Variable name="keycolor" description="Primary Color" type="color" default="#2C91E1" value="#2C91E1"/>
+<Variable name="startSide" description="Start Side" type="automatic" default="left" value="left"/>
+<Variable name="endSide" description="End Side" type="automatic" default="right" value="right"/>
+
+<Group description="Page Text" selector="body">
+  <Variable name="body.text.font" description="Font" type="font" default="normal normal 15px 'Open Sans', Arial, sans-serif" value="normal normal 15px 'Open Sans', Arial, sans-serif"/>
+  <Variable name="body.text.color" description="Text Color" type="color" default="#444444" value="#444444"/>
+</Group>
+
+<Group description="Backgrounds" selector=".page">
+  <Variable name="body.background" description="Background" type="background" default="$(color) none no-repeat scroll top center" color="#ffffff" value="$(color) none no-repeat scroll top center"/>
+  <Variable name="body.background.color" description="Background Color" type="color" default="#ffffff" value="#ffffff"/>
+</Group>
+
+<Group description="Links" selector="a">
+  <Variable name="body.link.color" description="Link Color" type="color" default="#222222" value="#222222"/>
+  <Variable name="body.link.visited.color" description="Visited Color" type="color" default="#222222" value="#222222"/>
+  <Variable name="body.link.hover.color" description="Hover Color" type="color" default="#2C91E1" value="#2C91E1"/>
+</Group>
+
+<Group description="Blog Title" selector="div.widget.Header">
+  <Variable name="blog.title.font" description="Title Font" type="font" default="normal bold 28px 'Montserrat', sans-serif" value="normal bold 28px 'Montserrat', sans-serif"/>
+  <Variable name="blog.title.color" description="Title Color" type="color" default="#000000" value="#000000"/>
+</Group>
+
+<Group description="Posts" selector="div.widget.Blog">
+  <Variable name="posts.title.font" description="Post Title Font" type="font" default="normal 800 22px 'Roboto', sans-serif" value="normal 800 22px 'Roboto', sans-serif"/>
+  <Variable name="posts.title.color" description="Post Title Color" type="color" default="#222222" value="#222222"/>
+  <Variable name="posts.text.font" description="Post Text Font" type="font" default="normal normal 15px 'Open Sans', sans-serif" value="normal normal 15px 'Open Sans', sans-serif"/>
+  <Variable name="posts.text.color" description="Post Text Color" type="color" default="#555555" value="#555555"/>
+  <Variable name="posts.background.color" description="Post Background" type="color" default="#FFFFFF" value="#FFFFFF"/>
+  <Variable name="posts.byline.color" description="Byline Color" type="color" default="#888888" value="#888888"/>
+  <Variable name="posts.icons.color" description="Icons Color" type="color" default="#999999" value="#999999"/>
+</Group>
+
+<Group description="Sidebar" selector=".sidebar">
+  <Variable name="widget.title.color" description="Widget Title" type="color" default="#ffffff" value="#ffffff"/>
+  <Variable name="sidebar.background.color" description="Sidebar Background" type="color" default="#FFFFFF" value="#FFFFFF"/>
+</Group>
+
+<Group description="Widths" selector="body">
+  <Variable name="content.width" description="Content Width" type="length" default="1200px" min="800px" max="1600px" value="1200px"/>
+</Group>
+*/
+
+/* ============================================
+   EDUTECH BLOGGER TEMPLATE v5
+   ============================================ */
+
+/* --- Hide skip navigation link --- */
+.skip-navigation, #skip-navigation, a[href="#main"], .sb-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
+
+/* --- Reset --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #444;
+  background: $(body.background.color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  min-height: 100vh;
+}
+img { max-width: 100%; height: auto; }
+a { color: #222; text-decoration: none; transition: color 0.25s ease; }
+a:visited { color: #222; }
+a:hover { color: $(keycolor); }
+ul, ol { list-style: none; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #222;
+}
+input, button, textarea { font-family: inherit; font-size: inherit; }
+button { cursor: pointer; border: none; background: none; }
+
+/* --- Layout Mode --- */
+body#layout { width: 100%; max-width: none; }
+body#layout .container { width: 100%; }
+body#layout .widget { width: 100%; padding: 10px; margin: 5px 0; border: 1px dashed #ccc; background: #f9f9f9; }
+body#layout #home_sidebar::before {
+  content: '\f015  SIDEBAR - HOME ONLY';
+  display: block;
+  background: #2C91E1;
+  color: #fff;
+  padding: 8px 14px;
+  font: 700 12px/1.4 Arial, sans-serif;
+  letter-spacing: 0.5px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  font-family: 'Font Awesome 6 Free', Arial, sans-serif;
+}
+body#layout #post_sidebar::before {
+  content: '\f15c  SIDEBAR - SINGLE POST ONLY';
+  display: block;
+  background: #e67e22;
+  color: #fff;
+  padding: 8px 14px;
+  font: 700 12px/1.4 Arial, sans-serif;
+  letter-spacing: 0.5px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  font-family: 'Font Awesome 6 Free', Arial, sans-serif;
+}
+body#layout #sidebar_section::before {
+  content: '\f0c9  SIDEBAR - ALL PAGES (except Home)';
+  display: block;
+  background: #27ae60;
+  color: #fff;
+  padding: 8px 14px;
+  font: 700 12px/1.4 Arial, sans-serif;
+  letter-spacing: 0.5px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  font-family: 'Font Awesome 6 Free', Arial, sans-serif;
+}
+body#layout #home_sidebar,
+body#layout #post_sidebar,
+body#layout #sidebar_section {
+  border: 2px solid #ddd;
+  padding: 10px;
+  margin: 10px 0;
+  background: #fafafa;
+  display: block !important;
+  clear: both;
+  width: 100% !important;
+  float: none !important;
+  overflow: hidden;
+}
+body#layout .home-two-col,
+body#layout .content-layout {
+  display: block !important;
+}
+body#layout .home-main-col,
+body#layout .home-sidebar-col,
+body#layout .main-content,
+body#layout aside.sidebar {
+  display: block !important;
+  float: none !important;
+  width: 100% !important;
+  clear: both;
+}
+body#layout .cat-block,
+body#layout .ad-block {
+  border: 1px dashed #aaa;
+  padding: 8px;
+  margin: 8px 0;
+  background: #f5f5f5;
+}
+body#layout .cat-block::before {
+  content: 'Homepage Section';
+  display: block;
+  font: 700 10px/1.5 Arial, sans-serif;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+body#layout .ad-block::before {
+  content: 'Ad Block';
+  display: block;
+  font: 700 10px/1.5 Arial, sans-serif;
+  color: #e67e22;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+body#layout #cat_section_1::before { content: 'Category Section 1 (Entertainment)'; display: block; font: 700 10px/1.5 Arial; color: #2c91e1; }
+body#layout #cat_section_2::before { content: 'Category Section 2 (Fun & Fashion)'; display: block; font: 700 10px/1.5 Arial; color: #2c91e1; }
+body#layout #cat_section_3::before { content: 'Category Section 3 (International)'; display: block; font: 700 10px/1.5 Arial; color: #2c91e1; }
+
+/* --- Container --- */
+.container { max-width: $(content.width); margin: 0 auto; padding: 0 15px; }
+
+/* ============================================
+   TOP BAR
+   ============================================ */
+.top-bar {
+  background: #222;
+  color: #fff;
+  overflow: hidden;
+}
+.top-bar .container {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+.headline-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  overflow: hidden;
+  height: 40px;
+}
+.headline-label {
+  background: $(keycolor);
+  color: #fff;
+  padding: 0 12px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  height: 26px;
+  line-height: 26px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  margin-right: 12px;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.5px;
+}
+.headline-ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1;
+  height: 40px;
+  line-height: 40px;
+}
+.headline-ticker .ticker-wrap {
+  display: inline-block;
+  animation: ticker 25s linear infinite;
+}
+.headline-ticker a {
+  color: #bbb;
+  font-size: 13px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0 20px;
+  display: inline-block;
+}
+.headline-ticker a:hover, .headline-ticker a:visited:hover { color: #fff; }
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  margin-left: 15px;
+}
+.topbar-right .follow-text {
+  color: #999;
+  font-size: 11px;
+  white-space: nowrap;
+  margin-right: 6px;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.topbar-right .top-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px;
+  background: #444;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 11px;
+  transition: background 0.3s;
+}
+.topbar-right .top-social a:hover, .topbar-right .top-social a:visited:hover { background: $(keycolor); color: #fff; }
+.topbar-right .top-search-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px;
+  background: $(keycolor);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 11px;
+  cursor: pointer;
+  border: none;
+  margin-left: 4px;
+}
+.top-search-box {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 40px;
+  background: #fff;
+  padding: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  z-index: 9999;
+  border-radius: 3px;
+}
+.top-search-box.active { display: block; }
+.top-search-box input {
+  border: 1px solid #ddd;
+  padding: 8px 14px;
+  font-size: 14px;
+  width: 240px;
+  outline: none;
+  border-radius: 3px;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header-wrapper {
+  background: #fff;
+  position: relative;
+  z-index: 1000;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+.site-logo {
+  float: left;
+  max-width: 350px;
+  text-align: left;
+}
+.site-logo h1 {
+  font: $(blog.title.font);
+  color: $(blog.title.color);
+  margin: 5px 5px 0;
+  text-transform: none;
+}
+.site-logo h1 a { color: $(blog.title.color); }
+.site-logo h1 a:hover { color: $(keycolor); }
+.site-logo p.description {
+  font-size: 13px;
+  color: #888;
+  margin: 2px 5px 0;
+  line-height: 1.2;
+  font-family: 'Open Sans', sans-serif;
+}
+.header-ad {
+  float: right;
+  max-width: 728px;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.topbar-nav {
+  background: #fff;
+  border-top: 1px solid #eee;
+  border-bottom: 2px solid $(keycolor);
+  height: auto;
+  z-index: 999;
+  position: relative;
+}
+.topbar-nav .container {
+  display: flex;
+  align-items: center;
+}
+.main-nav { flex: 1; }
+.main-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  height: 44px;
+}
+.main-nav ul li { position: relative; list-style: none; }
+.main-nav ul li a {
+  display: block;
+  line-height: 44px;
+  padding: 0 18px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+}
+.main-nav ul li a:hover,
+.main-nav ul li a:visited:hover {
+  color: $(keycolor);
+  border-bottom-color: $(keycolor);
+}
+.main-nav ul li.selected a,
+.main-nav ul li.home a {
+  color: $(keycolor);
+  border-bottom-color: $(keycolor);
+}
+.main-nav ul li ul {
+  display: none;
+  position: absolute;
+  top: 44px;
+  left: 0;
+  background: #fff;
+  min-width: 200px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  z-index: 1000;
+  flex-direction: column;
+  height: auto;
+  border-top: 2px solid $(keycolor);
+}
+.main-nav ul li:hover > ul { display: flex; }
+.main-nav ul li ul li a {
+  line-height: 40px;
+  padding: 0 18px;
+  font-size: 12px;
+  font-weight: 600;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 0;
+}
+.main-nav ul li ul li a:hover { background: #f7f7f7; color: $(keycolor); border-bottom-color: #f0f0f0; }
+.main-nav ul li.has-sub > a::after {
+  content: ' \f107';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  font-size: 10px;
+  margin-left: 4px;
+}
+.mobile-menu-toggle {
+  display: none;
+  font-size: 22px;
+  color: #333;
+  padding: 8px;
+  line-height: 44px;
+}
+.slicknav_menu { display: none; }
+
+/* ============================================
+   FEATURED SLIDER + 2x2 GRID
+   ============================================ */
+.featured-section {
+  padding: 18px 0 10px;
+  background: $(body.background.color);
+}
+.featured-layout {
+  display: flex;
+  gap: 4px;
+}
+.featured-slider {
+  width: 50%;
+  position: relative;
+  overflow: hidden;
+}
+.featured-slider .slide-item {
+  position: relative;
+  background: #000;
+}
+.featured-slider .slide-item img {
+  display: block;
+  width: 100%;
+  height: 432px;
+  object-fit: cover;
+}
+.featured-slider .slide-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px 25px 25px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);
+  color: #fff;
+}
+.featured-slider .slide-cat {
+  display: inline-block;
+  padding: 3px 10px;
+  background: $(keycolor);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  font-family: 'Roboto', sans-serif;
+}
+.featured-slider .slide-cat:visited { color: #fff; }
+.featured-slider .slide-title a {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.35;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+}
+.featured-slider .slide-title a:visited { color: #fff; }
+.featured-slider .slide-title a:hover { color: #ddd; }
+.featured-slider .slide-meta {
+  font-size: 12px;
+  color: #ccc;
+  margin-top: 6px;
+  font-family: 'Open Sans', sans-serif;
+}
+.featured-slider .slide-meta span { margin-right: 12px; }
+.featured-slider .slick-prev,
+.featured-slider .slick-next {
+  border-radius: 3px;
+  top: 12px;
+  z-index: 999;
+  width: 24px;
+  height: 24px;
+  background-color: rgba(255,255,255,0.9);
+}
+.featured-slider .slick-next { right: 6px; }
+.featured-slider .slick-prev { right: 34px; left: auto; }
+.featured-slider .slick-prev:before {
+  content: '\f104';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: #000;
+  font-size: 12px;
+  line-height: 1;
+}
+.featured-slider .slick-next:before {
+  content: '\f105';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: #000;
+  font-size: 12px;
+  line-height: 1;
+}
+.featured-grid {
+  width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+}
+.featured-grid-card {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+.featured-grid-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 214px;
+  opacity: 0.85;
+  transition: opacity 0.3s;
+}
+.featured-grid-card:hover img { opacity: 0.65; }
+.featured-grid-card .grid-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 14px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+  color: #fff;
+}
+.featured-grid-card .grid-card-cat {
+  display: inline-block;
+  padding: 2px 8px;
+  background: $(keycolor);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 3px;
+  margin-bottom: 4px;
+  font-family: 'Roboto', sans-serif;
+}
+.featured-grid-card .grid-card-cat:visited { color: #fff; }
+.featured-grid-card .grid-card-title a {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.3;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+}
+.featured-grid-card .grid-card-title a:visited { color: #fff; }
+.featured-grid-card .grid-card-title a:hover { color: #ddd; }
+
+/* ============================================
+   SECTION TITLES (Pill Style)
+   ============================================ */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.section-header::after { display: none; }
+.section-title {
+  background: $(keycolor);
+  margin-bottom: 0;
+  padding: 5px 16px;
+  color: #fff;
+  display: inline-block;
+  border-radius: 3px;
+  text-transform: capitalize;
+  font-size: 12px;
+  line-height: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   MAIN 2-COLUMN LAYOUT (Content + Sidebar continuous)
+   After featured section, everything is in one flex row
+   ============================================ */
+.home-body {
+  padding: 15px 0 0;
+}
+.home-two-col {
+  display: flex;
+  gap: 25px;
+}
+.home-main-col {
+  flex: 1;
+  min-width: 0;
+}
+.home-sidebar-col {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+/* Category section spacing inside main col */
+.cat-block {
+  margin-bottom: 25px;
+}
+
+/* Ad insertion block */
+.ad-block {
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* Entertainment: Big card + small list */
+.cat-entertainment-layout {
+  display: flex;
+  gap: 10px;
+}
+.cat-big-card {
+  width: 50%;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  border-radius: 4px;
+}
+.cat-big-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+}
+.cat-big-card .cat-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 20px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);
+  color: #fff;
+}
+.cat-big-card .cat-title a {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.35;
+  font-family: 'Roboto', sans-serif;
+}
+.cat-big-card .cat-title a:visited { color: #fff; }
+.cat-big-card .cat-summary {
+  font-size: 12px;
+  color: #ddd;
+  margin-top: 6px;
+  line-height: 1.5;
+  font-family: 'Open Sans', sans-serif;
+}
+.cat-big-card .cat-meta {
+  font-size: 11px;
+  color: #bbb;
+  margin-top: 6px;
+  font-family: 'Open Sans', sans-serif;
+}
+.cat-small-list {
+  width: 50%;
+}
+.cat-small-item {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  align-items: flex-start;
+}
+.cat-small-item:last-child { border-bottom: none; }
+.cat-small-item .item-thumb {
+  flex-shrink: 0;
+  width: 90px;
+  height: 68px;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.cat-small-item .item-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cat-small-item .item-info { flex: 1; }
+.cat-small-item .item-title a {
+  font-size: 13px;
+  font-weight: 800;
+  color: #222;
+  text-transform: uppercase;
+  line-height: 1.35;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+}
+.cat-small-item .item-title a:hover { color: $(keycolor); }
+.cat-small-item .item-meta {
+  font-size: 11px;
+  color: #999;
+  margin-top: 4px;
+  font-family: 'Open Sans', sans-serif;
+}
+.cat-small-item .item-meta i { color: $(keycolor); margin-right: 3px; }
+
+/* Fun & Fashion: 2 rows (3+2 or 3+3) grid with big first card */
+#cat_section_2 .widget { margin-bottom: 25px; }
+#cat_section_2 .widget:last-child { margin-bottom: 0; }
+.cat-ff-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.cat-ff-card {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  border-radius: 4px;
+}
+.cat-ff-card img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: opacity 0.3s;
+}
+.cat-ff-card:hover img { opacity: 0.7; }
+.cat-ff-card .ff-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+  color: #fff;
+}
+.cat-ff-card .ff-card-title a {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.3;
+  font-family: 'Roboto', sans-serif;
+}
+.cat-ff-card .ff-card-title a:visited { color: #fff; }
+.cat-ff-card .ff-card-meta {
+  font-size: 10px;
+  color: #ccc;
+  margin-top: 3px;
+  font-family: 'Open Sans', sans-serif;
+}
+.cat-ff-card .ff-card-meta a { color: #ccc; }
+.cat-ff-card .ff-card-meta a:hover { color: #fff; }
+
+/* International: Slider cards */
+.cat-slider-wrap { position: relative; }
+.cat-slider-card {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  border-radius: 4px;
+  margin: 0 4px;
+}
+.cat-slider-card img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: opacity 0.3s;
+}
+.cat-slider-card:hover img { opacity: 0.7; }
+.cat-slider-card .slider-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+  color: #fff;
+}
+.cat-slider-card .slider-title a {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.3;
+  font-family: 'Roboto', sans-serif;
+}
+.cat-slider-card .slider-title a:visited { color: #fff; }
+.cat-slider-card .slider-meta {
+  font-size: 10px;
+  color: #ccc;
+  margin-top: 3px;
+  font-family: 'Open Sans', sans-serif;
+}
+.cat-slider-card .slider-meta a { color: $(keycolor); font-weight: 600; }
+.cat-slider-card .slider-meta a:hover { color: #fff; }
+.cat-slider-wrap .slick-prev,
+.cat-slider-wrap .slick-next {
+  border-radius: 50%;
+  z-index: 999;
+  width: 28px;
+  height: 28px;
+  background-color: rgba(255,255,255,0.9);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.cat-slider-wrap .slick-next { right: 6px; }
+.cat-slider-wrap .slick-prev { left: 6px; }
+.cat-slider-wrap .slick-prev:before {
+  content: '\f104';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: #000;
+  font-size: 13px;
+}
+.cat-slider-wrap .slick-next:before {
+  content: '\f105';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: #000;
+  font-size: 13px;
+}
+
+/* ============================================
+   LATEST UPDATES (JS-loaded)
+   ============================================ */
+.latest-post-item {
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+  display: flex;
+  gap: 18px;
+}
+.latest-post-item:last-child { border-bottom: none; }
+.latest-post-thumb {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 280px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.latest-post-thumb img {
+  display: block;
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+.latest-post-info { flex: 1; min-width: 0; }
+.latest-post-info .lp-title {
+  font-size: 18px;
+  font-weight: 800;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.35;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.latest-post-info .lp-title a { color: #222; }
+.latest-post-info .lp-title a:hover { color: $(keycolor); }
+.latest-post-info .lp-meta {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+  font-family: 'Open Sans', sans-serif;
+}
+.latest-post-info .lp-meta a { color: $(keycolor); }
+.latest-post-info .lp-meta .ppi-dot { margin: 0 6px; color: #ccc; }
+.latest-post-info .lp-summary {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.65;
+  font-family: 'Open Sans', sans-serif;
+}
+.latest-post-info .lp-readmore {
+  display: inline-block;
+  margin-top: 8px;
+  background: #222;
+  color: #fff;
+  padding: 5px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 3px;
+  transition: 0.2s;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.latest-post-info .lp-readmore:visited { color: #fff; }
+.latest-post-info .lp-readmore:hover { background: $(keycolor); }
+.load-more-wrap {
+  text-align: center;
+  padding: 20px 0;
+}
+.page-numbers {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0 3px;
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #333;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: 'Roboto', sans-serif;
+}
+.page-numbers:hover, .page-numbers.active {
+  background: $(keycolor);
+  color: #fff;
+  border-color: $(keycolor);
+}
+
+/* ============================================
+   NON-HOME CONTENT + SIDEBAR
+   ============================================ */
+.content-wrapper { padding: 20px 0; }
+.content-layout {
+  display: flex;
+  gap: 25px;
+}
+.main-content {
+  flex: 1;
+  min-width: 0;
+  padding: 0 15px;
+}
+/* Single post: center content with readable width */
+.item-view .main-content {
+  max-width: 820px;
+}
+
+/* Blog Posts */
+.Blog .blog-posts .post-outer-container {
+  background: $(posts.background.color);
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 0 0 20px 0;
+}
+.Blog .blog-posts .post-outer-container .post-outer {
+  border: 0;
+  position: relative;
+  padding: 0;
+}
+.post-title {
+  font: $(posts.title.font);
+  margin: 15px 0 10px 0;
+  padding: 0;
+  font-size: 24px;
+  line-height: 1.4em;
+  color: #222;
+}
+.post-title a, .post-title a:visited {
+  color: #222;
+  text-decoration: none;
+  font-weight: 800;
+}
+.post-title a:hover { color: $(keycolor); }
+.post-body {
+  color: $(posts.text.color);
+  font: $(posts.text.font);
+  line-height: 1.75;
+  letter-spacing: 0.2px;
+  margin: 10px 0 15px 0;
+}
+.post-body img { margin: 10px 0; }
+.post-body a { color: $(keycolor); }
+.post-body blockquote {
+  font-size: 14px;
+  padding: 15px 20px;
+  margin: 20px 0;
+  background: #f7f7f7;
+  border-left: 3px solid $(keycolor);
+  font-style: italic;
+}
+.post-body h2, .post-body h3 { margin: 24px 0 12px; }
+.post-body p { margin-bottom: 16px; }
+.snippet-thumbnail {
+  float: $(startSide);
+  margin: 0;
+  margin-$endSide: 2em;
+  max-height: 128px;
+  max-width: 128px;
+}
+.snippet-thumbnail img { max-width: 100%; }
+.byline {
+  color: $(posts.byline.color);
+  display: inline-block;
+  line-height: 24px;
+  margin-top: 8px;
+  margin-$endSide: 1em;
+  font-size: 13px;
+  font-family: 'Open Sans', sans-serif;
+}
+.byline:last-child { margin-$endSide: 0; }
+.byline a { color: $(posts.byline.color); }
+.byline a:hover { color: $(keycolor); }
+.jump-link { display: inline-block; margin-top: 12px; }
+.jump-link a {
+  background-color: #222;
+  display: inline-block;
+  padding: 5px 14px;
+  color: #fff;
+  transition: 0.2s;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 3px;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+}
+.jump-link a:visited { color: #fff; }
+.jump-link a:hover { background: $(keycolor); color: #fff; }
+.post-footer, .post-header {
+  clear: $(startSide);
+  color: $(posts.byline.color);
+  margin: 0;
+}
+.post-bottom {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.blog-pager {
+  text-align: center;
+  margin: 2em 0;
+}
+.blog-pager a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  transition: all 0.25s ease;
+  border-radius: 3px;
+}
+.blog-pager a:hover {
+  background: $(keycolor);
+  color: #fff;
+  border-color: $(keycolor);
+}
+.byline.post-labels a {
+  background: #222;
+  color: #fff;
+  float: left;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  margin: 0 4px 4px 0;
+  padding: 3px 8px;
+  border-radius: 3px;
+  transition: all 0.25s ease;
+}
+.byline.post-labels a:hover { background: $(keycolor); color: #fff; }
+/* Hide Blogger's default breadcrumb (HOME link below nav) */
+.breadcrumbs, .breadcrumb, #breadcrumb,
+.blog-post-breadcrumb, .post-filter-message,
+.hierarchy, .blog-posts .breadcrumbs,
+.blog-content .breadcrumbs,
+.post-outer .breadcrumbs,
+.flat-icon-button.breadcrumbs,
+.post-outer > nav,
+.byline.breadcrumb,
+.blog-post .breadcrumb,
+.blog-pager-container nav,
+.post-outer-container > nav,
+.Blog nav.breadcrumb,
+.Blog .breadcrumbs,
+.Blog nav[aria-label],
+.post-title-container .breadcrumbs { display: none !important; }
+/* Also hide the single HOME link breadcrumb that Blogger renders */
+.main-content > nav:first-child,
+#main-content > nav:first-child,
+.blog-posts > nav:first-child { display: none !important; }
+
+/* Custom breadcrumb for single post */
+.custom-breadcrumb {
+  font-size: 13px;
+  font-family: 'Open Sans', sans-serif;
+  color: #999;
+  padding: 12px 0 8px;
+  margin-bottom: 5px;
+}
+.custom-breadcrumb a {
+  color: $(keycolor);
+  text-decoration: none;
+}
+.custom-breadcrumb a:hover {
+  text-decoration: underline;
+}
+.custom-breadcrumb .sep {
+  margin: 0 6px;
+  color: #999;
+}
+.custom-breadcrumb .current {
+  color: #999;
+}
+
+/* Hide Blogger's default share buttons (black share icon) */
+.post-share-buttons { display: none !important; }
+.share-buttons { display: none !important; }
+.sharing { display: none !important; }
+.post-share-buttons-top { display: none !important; }
+.post-share-buttons-bottom { display: none !important; }
+.flat-button.share-button { display: none !important; }
+.post-header .share-button { display: none !important; }
+div[class*='share'] img[src*='share'] { display: none !important; }
+
+/* Custom Share Buttons */
+.custom-share-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 18px 0;
+  padding: 14px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  flex-wrap: wrap;
+}
+.custom-share-buttons .share-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #555;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: 4px;
+}
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #fff !important;
+  font-size: 15px;
+  transition: opacity 0.25s ease;
+}
+.share-btn:visited { color: #fff !important; }
+.share-btn:hover { opacity: 0.8; color: #fff !important; }
+.share-fb { background: #1877F2; }
+.share-tw { background: #000; }
+.share-wa { background: #25D366; }
+.share-tg { background: #0088cc; }
+
+/* Comments */
+#comments {
+  border-top: 1px dashed rgba(0,0,0,0.12);
+  margin-top: 20px;
+  padding: 20px;
+}
+#comments .comment-thread ol { margin: 0; padding-left: 0; }
+#comments .comment { list-style-type: none; padding: 0 0 20px; position: relative; }
+.comment .avatar-image-container { position: absolute; }
+.comment .avatar-image-container img { border-radius: 50%; }
+.comment .comment-block {
+  margin-top: 10px;
+  margin-$startSide: 60px;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+#comments .comment .comment-header .user,
+#comments .comment .comment-header .user a {
+  color: #222;
+  font-weight: 700;
+  font-size: 14px;
+}
+#comments .comment .comment-header .datetime {
+  color: #9CA3AF;
+  font-size: 12px;
+  font-style: italic;
+  margin-$startSide: 8px;
+}
+#comments .comment .comment-content { margin-top: 8px; font-size: 14px; line-height: 1.7; }
+
+/* Status Messages */
+.no-posts-message { line-height: 40px; text-align: center; }
+.status-msg-wrap, .post-filter-message {
+  margin: 16px 0;
+  padding: 12px 16px;
+  background: #FEF3C7;
+  border: 1px solid #F59E0B;
+  border-radius: 5px;
+  color: #92400E;
+  font-size: 14px;
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+.sidebar {
+  width: 300px;
+  min-width: 300px;
+  word-wrap: break-word;
+}
+.sidebar .widget {
+  background: $(sidebar.background.color);
+  margin: 0 0 1.5em;
+  padding: 0 0 1.5em;
+}
+.sidebar .widget .title,
+.sidebar .widget h2,
+.sidebar .widget h3.title,
+.sidebar .widget h3 {
+  background: $(keycolor);
+  margin-bottom: 12px;
+  padding: 5px 14px;
+  color: $(widget.title.color);
+  display: inline-block;
+  border-radius: 3px;
+  text-transform: capitalize;
+  font-size: 12px;
+  line-height: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-bottom: none;
+  position: relative;
+}
+.sidebar .widget .title::after,
+.sidebar .widget h2::after,
+.sidebar .widget h3::after { display: none; }
+
+/* Popular Posts */
+.sidebar .PopularPosts ul { list-style: none; padding: 0; margin: 0; }
+.sidebar .PopularPosts .post {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  background: #000;
+}
+.sidebar .PopularPosts .post:last-child { margin-bottom: 0; }
+.sidebar .PopularPosts .item-thumbnail {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.sidebar .PopularPosts .item-thumbnail img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: opacity 0.3s;
+}
+.sidebar .PopularPosts .post:hover .item-thumbnail img { opacity: 0.7; }
+.sidebar .PopularPosts .item-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 14px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);
+}
+.sidebar .PopularPosts .post-title a,
+.sidebar .PopularPosts h3.post-title a {
+  font: 800 13px/1.4 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  color: #fff;
+}
+.sidebar .PopularPosts .post-title a:hover { color: #ddd; }
+.sidebar .PopularPosts .item-snippet { display: none; }
+
+/* Labels */
+.sidebar .Label ul { list-style: none; padding: 0; margin: 0; }
+.sidebar .Label li {
+  border-bottom: 1px dotted #eee;
+  line-height: 34px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0 10px;
+}
+.sidebar .Label li:last-child { border-bottom: none; }
+.sidebar .Label a {
+  font-size: 13px;
+  color: #444;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidebar .Label a:hover { color: $(keycolor); }
+.label-count { color: #9CA3AF; font-size: 12px; }
+.Label .label-count::before { content: "("; }
+.Label .label-count::after { content: ")"; }
+
+/* Cloud Labels */
+.cloud-label-widget-content li,
+.cloud-label-widget-content a {
+  background: #222;
+  color: #fff;
+  float: left;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  margin: 0 4px 4px 0;
+  padding: 2px 8px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  border-radius: 3px;
+}
+.cloud-label-widget-content a:hover { background: $(keycolor); color: #fff; }
+
+/* Social Icons */
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  background: #333;
+  border-radius: 50%;
+  color: #fff;
+  margin: 0 4px 4px 0;
+  font-size: 14px;
+  transition: all 0.25s ease;
+  border: none;
+}
+.social-icons a:hover, .social-icons a:visited:hover {
+  background: $(keycolor);
+  color: #fff;
+}
+
+/* Featured Post widget */
+.sidebar .FeaturedPost .snippet-thumbnail { float: none; margin: 0 0 10px 0; max-width: 100%; max-height: none; }
+.sidebar .FeaturedPost .snippet-thumbnail img { width: 100%; border-radius: 4px; }
+
+.collapsible > summary { cursor: pointer; display: block; padding: 0; }
+.collapsible > summary::-webkit-details-marker { display: none; }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+#main-footer {
+  background: #ffffff;
+  border-top: 1px solid #e5e5e5;
+  color: #555;
+  padding: 35px 0 0;
+  margin-top: 20px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.footer-col .widget {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+.footer-col h3, .footer-col h2 {
+  font-weight: 600;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.footer-col p, .footer-col li {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.8;
+  font-family: 'Open Sans', sans-serif;
+}
+.footer-col a { color: #555; }
+.footer-col a:hover { color: $(keycolor); }
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-col ul li { padding: 4px 0; }
+.footer-bottom {
+  text-align: center;
+  padding: 14px 0;
+  margin-top: 25px;
+  background: $(keycolor);
+  font-size: 13px;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.3px;
+}
+.footer-bottom a { color: #fff; font-weight: 600; }
+.footer-bottom a:hover { text-decoration: underline; color: #fff; }
+
+.Attribution { text-align: center; font-size: 13px; color: #777; }
+.Attribution a { color: #555; }
+
+/* ============================================
+   SCROLL TO TOP
+   ============================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 50px;
+  right: 25px;
+  width: 42px;
+  height: 42px;
+  background: $(keycolor);
+  color: #fff;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 9999;
+  line-height: 42px;
+  text-align: center;
+  transition: all 0.25s ease;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.back-to-top:hover { opacity: 0.85; }
+
+/* 404 */
+.error-404 {
+  text-align: center;
+  padding: 80px 20px;
+}
+.error-404 h1 { font-size: 6rem; color: $(keycolor); font-weight: 800; }
+.error-404 h2 { font-size: 1.5rem; margin-bottom: 16px; }
+.error-404 p { color: #6B7280; margin-bottom: 24px; }
+.error-404 a.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: $(keycolor);
+  color: #fff;
+  border-radius: 3px;
+  font-weight: 700;
+}
+.error-404 a.btn:visited { color: #fff; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .content-layout { flex-direction: column; }
+  .home-two-col { flex-direction: column; }
+  .home-sidebar-col { width: 100%; min-width: 0; }
+  .main-content { width: 100%; }
+  .sidebar { width: 100%; min-width: 0; }
+  .featured-layout { flex-direction: column; }
+  .featured-slider { width: 100%; }
+  .featured-grid { width: 100%; }
+  .featured-grid-card img { min-height: 180px; }
+  .cat-entertainment-layout { flex-direction: column; }
+  .cat-big-card { width: 100%; }
+  .cat-small-list { width: 100%; }
+  .cat-ff-layout { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .latest-post-item { flex-direction: column; }
+  .latest-post-thumb { max-width: 100%; }
+}
+
+@media (max-width: 768px) {
+  .main-nav { display: none; }
+  .mobile-menu-toggle { display: block; }
+  .slicknav_menu { display: block; }
+  .topbar-right { display: none; }
+  .featured-slider .slide-item img { height: 280px; }
+  .featured-grid { grid-template-columns: 1fr 1fr; }
+  .cat-ff-layout { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .featured-slider .slide-item img { height: 220px; }
+  .featured-grid { grid-template-columns: 1fr; }
+  .cat-ff-layout { grid-template-columns: 1fr; }
+  .container { padding: 0 10px; }
+}
+
+/* Related Articles */
+.related-articles { margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee; }
+.related-articles .section-header { margin-bottom: 15px; }
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.related-card {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  border-radius: 4px;
+}
+.related-card img {
+  display: block;
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  transition: opacity 0.3s;
+}
+.related-card:hover img { opacity: 0.7; }
+.related-card .related-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);
+  color: #fff;
+}
+.related-card .related-title a {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.3;
+  font-family: 'Roboto', sans-serif;
+}
+.related-card .related-title a:visited { color: #fff; }
+.related-card .related-title a:hover { color: #ddd; }
+.related-card .related-meta {
+  font-size: 10px;
+  color: #ccc;
+  margin-top: 3px;
+  font-family: 'Open Sans', sans-serif;
+}
+@media (max-width: 768px) {
+  .related-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .related-grid { grid-template-columns: 1fr; }
+}
+
+/* Sidebar inject wrappers (for non-homepage sidebar sections placed outside b:if) */
+.sidebar-inject-wrap { display: none; }
+/* JS will move sections into .content-layout aside and show them */
+.content-layout aside#sidebar-injected {
+  width: 300px;
+  min-width: 300px;
+}
+.content-layout aside#sidebar-injected .widget {
+  margin-bottom: 20px;
+  background: #fff;
+  padding: 15px;
+  border: 1px solid #eee;
+}
+@media (max-width: 992px) {
+  .content-layout aside#sidebar-injected { width: 100%; min-width: 0; }
+}
+
+/* Utility */
+.hidden { display: none; }
+.invisible { visibility: hidden; }
+.sr-only { position: absolute; width: 1px; height: 1px; clip: rect(0,0,0,0); overflow: hidden; }
+.item-control { display: none; }
+.clear { clear: both; }
+
+]]></b:skin>
+
+    <b:template-skin>
+      <![CDATA[
+      body#layout .hidden,
+      body#layout .invisible {
+        display: inherit;
+      }
+      body#layout .main-content,
+      body#layout .sidebar {
+        display: block;
+        left: inherit;
+        position: relative;
+        vertical-align: top;
+        float: none;
+        width: 100%;
+      }
+      body#layout .featured-section,
+      body#layout .top-bar,
+      body#layout .mobile-menu-toggle {
+        display: block;
+      }
+      body#layout .content-layout,
+      body#layout .home-two-col {
+        display: block;
+      }
+      body#layout .home-main-col,
+      body#layout .home-sidebar-col {
+        display: block;
+        float: none;
+        width: 100%;
+      }
+      body#layout #home_sidebar,
+      body#layout #post_sidebar,
+      body#layout #sidebar_section {
+        display: block;
+        width: 100%;
+        clear: both;
+      }
+      body#layout #post-sidebar-wrap,
+      body#layout #all-sidebar-wrap {
+        display: block !important;
+        width: 100%;
+      }
+      body#layout .sidebar-inject-wrap {
+        display: block !important;
+        width: 100%;
+      }
+      ]]>
+    </b:template-skin>
+
+    <b:defaultmarkups>
+      <b:defaultmarkup type='Common'>
+        <b:includable id='widgetNotAvailableInPreview'>
+          <b:include name='super.widgetNotAvailableInPreview'/>
+        </b:includable>
+      </b:defaultmarkup>
+      <b:defaultmarkup type='Blog'>
+        <b:includable id='feedLinks'>
+          <b:comment>Don't show feed links.</b:comment>
+        </b:includable>
+        <b:includable id='breadcrumb'>
+          <b:if cond='data:view.isSingleItem'>
+            <div class='custom-breadcrumb'>
+              <a expr:href='data:blog.homepageUrl'>Home</a>
+              <b:if cond='data:post.labels'>
+                <b:loop values='data:post.labels' var='label' index='i'>
+                  <b:if cond='data:i == 0'>
+                    <span class='sep'>&gt;</span>
+                    <a expr:href='data:label.url'><data:label.name/></a>
+                  </b:if>
+                </b:loop>
+              </b:if>
+              <span class='sep'>&gt;</span>
+              <span class='current'><data:post.title/></span>
+            </div>
+          </b:if>
+          <b:if cond='data:view.isSearch and not data:view.isHomepage'>
+            <div class='custom-breadcrumb'>
+              <a expr:href='data:blog.homepageUrl'>Home</a>
+              <span class='sep'>&gt;</span>
+              <span class='current'>
+                <b:if cond='data:view.search.label'>
+                  <data:view.search.label/>
+                <b:elseif cond='data:view.search.query'/>
+                  Search: <data:view.search.query/>
+                <b:else/>
+                  Archive
+                </b:if>
+              </span>
+            </div>
+          </b:if>
+        </b:includable>
+        <b:includable id='shareButtons'>
+          <b:if cond='data:view.isSingleItem'>
+            <div class='custom-share-buttons'>
+              <span class='share-label'>SHARE:</span>
+              <a class='share-btn share-fb' expr:href='"https://www.facebook.com/sharer/sharer.php?u=" + data:post.url' onclick='window.open(this.href,"fb","width=600,height=400");return false;' rel='noopener noreferrer' target='_blank' title='Share to Facebook'><i class='fa-brands fa-facebook-f'/></a>
+              <a class='share-btn share-tw' expr:href='"https://twitter.com/intent/tweet?url=" + data:post.url + "&amp;text=" + data:post.title' onclick='window.open(this.href,"tw","width=600,height=400");return false;' rel='noopener noreferrer' target='_blank' title='Share to Twitter'><i class='fa-brands fa-x-twitter'/></a>
+              <a class='share-btn share-wa' expr:href='"https://api.whatsapp.com/send?text=" + data:post.title + " " + data:post.url' rel='noopener noreferrer' target='_blank' title='Share to WhatsApp'><i class='fa-brands fa-whatsapp'/></a>
+              <a class='share-btn share-tg' expr:href='"https://t.me/share/url?url=" + data:post.url + "&amp;text=" + data:post.title' onclick='window.open(this.href,"tg","width=600,height=400");return false;' rel='noopener noreferrer' target='_blank' title='Share to Telegram'><i class='fa-brands fa-telegram'/></a>
+            </div>
+          </b:if>
+        </b:includable>
+        <b:includable id='previousPageLink'><b:comment>Don't show</b:comment></b:includable>
+        <b:includable id='homePageLink'><b:comment>Don't show</b:comment></b:includable>
+        <b:includable id='nextPageLink'>
+          <a class='blog-pager-older-link' expr:href='data:olderPageUrl' expr:title='data:messages.morePosts'>
+            <data:messages.morePosts/>
+          </a>
+        </b:includable>
+      </b:defaultmarkup>
+      <b:defaultmarkup type='Blog,FeaturedPost,PopularPosts'>
+        <b:includable id='postFooterJumpLink'>
+          <div class='jump-link'>
+            <a expr:href='data:post.hasJumpLink ? data:post.url fragment &quot;more&quot; : data:post.url' expr:title='data:post.title'>
+              <data:blog.jumpLinkMessage/>
+            </a>
+          </div>
+        </b:includable>
+      </b:defaultmarkup>
+      <b:defaultmarkup type='Header'>
+        <b:includable id='image'>
+          <b:include name='super.image'/>
+          <b:include cond='data:this.imagePlacement == &quot;REPLACE&quot;' name='title'/>
+        </b:includable>
+        <b:includable id='title'>
+          <div>
+            <b:class cond='data:this.imagePlacement == &quot;REPLACE&quot;' name='replaced'/>
+            <b:include name='super.title'/>
+          </div>
+        </b:includable>
+      </b:defaultmarkup>
+    </b:defaultmarkups>
+
+    <b:include data='blog' name='google-analytics'/>
+
+    <!-- JavaScript -->
+    <script type='text/javascript'>
+//<![CDATA[
+var imgFallback = "https://via.placeholder.com/600x400?text=No+Image";
+var summaryPost = 170;
+var latestPostsPerPage = 7;
+
+function removeHtmlTag(str, chop) {
+  if (!str) return '';
+  var s = str.split("<");
+  for (var i = 0; i < s.length; i++) {
+    if (s[i].indexOf(">") !== -1) {
+      s[i] = s[i].substring(s[i].indexOf(">") + 1, s[i].length);
+    }
+  }
+  s = s.join("");
+  return s.substring(0, chop - 1);
+}
+
+function getMonthName(num) {
+  var months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+  return months[parseInt(num) - 1] || "";
+}
+function getMonthFull(num) {
+  var months = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
+  return months[parseInt(num) - 1] || "";
+}
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  var parts = dateStr.split("-");
+  var day = parts[2] ? parts[2].substring(0, 2) : '';
+  return day + ' ' + getMonthName(parts[1]) + ' ' + parts[0];
+}
+function formatDateLong(dateStr) {
+  if (!dateStr) return '';
+  var parts = dateStr.split("-");
+  var day = parts[2] ? parts[2].substring(0, 2) : '';
+  return getMonthFull(parts[1]) + ' ' + day + ', ' + parts[0];
+}
+function getPostImage(entry) {
+  if (entry.media$thumbnail) return entry.media$thumbnail.url.replace('/s72-c/', '/s600/');
+  var content = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
+  var m = content.match(/<img[^>]+src=["']([^"']+)["']/);
+  return (m && m[1]) ? m[1] : imgFallback;
+}
+function getPostImageHiRes(entry) {
+  if (entry.media$thumbnail) return entry.media$thumbnail.url.replace('/s72-c/', '/s1600/');
+  var content = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
+  var m = content.match(/<img[^>]+src=["']([^"']+)["']/);
+  return (m && m[1]) ? m[1] : imgFallback;
+}
+function getPostUrl(entry) {
+  for (var k = 0; k < entry.link.length; k++) {
+    if (entry.link[k].rel === 'alternate') return entry.link[k].href;
+  }
+  return '#';
+}
+function getPostCategory(entry) {
+  return (entry.category && entry.category.length > 0) ? entry.category[0].term : '';
+}
+function getPostSummary(entry, len) {
+  var content = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
+  return removeHtmlTag(content, len || summaryPost);
+}
+function getCommentCount(entry) {
+  return entry.thr$total ? entry.thr$total.$t : '0';
+}
+
+// --- Headlines Ticker ---
+function headlineTicker(json) {
+  var entries = json.feed.entry;
+  if (!entries) return;
+  var html = '';
+  for (var i = 0; i < entries.length; i++) {
+    html += '<a href="' + getPostUrl(entries[i]) + '">' + entries[i].title.$t + '</a>';
+  }
+  html = html + html;
+  var el = document.getElementById('ticker-output');
+  if (el) el.innerHTML = '<span class="ticker-wrap">' + html + '</span>';
+}
+
+// --- Featured Slider + 2x2 Grid ---
+function featuredSlider(json) {
+  var entries = json.feed.entry;
+  if (!entries) return;
+  var sliderMax = Math.min(5, entries.length);
+  var gridStart = sliderMax;
+  var gridMax = Math.min(gridStart + 4, entries.length);
+
+  var sliderHtml = '';
+  for (var i = 0; i < sliderMax; i++) {
+    var e = entries[i];
+    var url = getPostUrl(e);
+    var img = getPostImageHiRes(e);
+    var cat = getPostCategory(e);
+    var date = formatDate(e.published.$t);
+    var author = e.author ? e.author[0].name.$t : '';
+    var comments = getCommentCount(e);
+
+    sliderHtml += '<div class="slide-item">';
+    sliderHtml += '<img src="' + img + '" alt=""/>';
+    sliderHtml += '<div class="slide-overlay">';
+    if (cat) sliderHtml += '<a class="slide-cat" href="/search/label/' + encodeURIComponent(cat) + '">' + cat + '</a>';
+    sliderHtml += '<h2 class="slide-title"><a href="' + url + '">' + e.title.$t.toUpperCase() + '</a></h2>';
+    sliderHtml += '<div class="slide-meta"><span><i class="fa-regular fa-calendar"></i> ' + date + '</span> <span><i class="fa-regular fa-comment"></i> ' + comments + '</span></div>';
+    sliderHtml += '</div></div>';
+  }
+  var sliderEl = document.getElementById('featured-slider-output');
+  if (sliderEl) {
+    sliderEl.innerHTML = sliderHtml;
+    $(sliderEl).slick({
+      dots: false, autoplay: true, infinite: true,
+      slidesToShow: 1, slidesToScroll: 1, speed: 500,
+      arrows: true, fade: true
+    });
+  }
+
+  var gridHtml = '';
+  for (var j = gridStart; j < gridMax; j++) {
+    var e2 = entries[j];
+    if (!e2) break;
+    var url2 = getPostUrl(e2);
+    var img2 = getPostImage(e2);
+    var cat2 = getPostCategory(e2);
+    gridHtml += '<div class="featured-grid-card">';
+    gridHtml += '<a href="' + url2 + '"><img src="' + img2 + '" alt=""/></a>';
+    gridHtml += '<div class="grid-card-overlay">';
+    if (cat2) gridHtml += '<a class="grid-card-cat" href="/search/label/' + encodeURIComponent(cat2) + '">' + cat2 + '</a>';
+    gridHtml += '<h3 class="grid-card-title"><a href="' + url2 + '">' + e2.title.$t.toUpperCase() + '</a></h3>';
+    gridHtml += '</div></div>';
+  }
+  var gridEl = document.getElementById('featured-grid-output');
+  if (gridEl) gridEl.innerHTML = gridHtml;
+}
+
+// --- Entertainment Layout ---
+function entertainmentLayout(json, targetId) {
+  var entries = json.feed.entry;
+  if (!entries) return;
+  var html = '<div class="cat-entertainment-layout">';
+  if (entries[0]) {
+    var e = entries[0];
+    var url = getPostUrl(e);
+    var img = getPostImageHiRes(e);
+    var date = formatDate(e.published.$t);
+    var excerpt = getPostSummary(e, 120);
+    html += '<div class="cat-big-card">';
+    html += '<a href="' + url + '"><img src="' + img + '" alt=""/></a>';
+    html += '<div class="cat-overlay">';
+    html += '<h3 class="cat-title"><a href="' + url + '">' + e.title.$t.toUpperCase() + '</a></h3>';
+    html += '<div class="cat-summary">' + excerpt + '</div>';
+    html += '<div class="cat-meta"><i class="fa-regular fa-calendar"></i> ' + date + '</div>';
+    html += '</div></div>';
+  }
+  html += '<div class="cat-small-list">';
+  for (var i = 1; i < Math.min(5, entries.length); i++) {
+    var e2 = entries[i];
+    var url2 = getPostUrl(e2);
+    var img2 = getPostImage(e2);
+    var date2 = formatDate(e2.published.$t);
+    var comments2 = getCommentCount(e2);
+    html += '<div class="cat-small-item">';
+    html += '<div class="item-thumb"><a href="' + url2 + '"><img src="' + img2.replace('/s600/', '/s200/') + '" alt=""/></a></div>';
+    html += '<div class="item-info">';
+    html += '<h4 class="item-title"><a href="' + url2 + '">' + e2.title.$t.toUpperCase() + '</a></h4>';
+    html += '<div class="item-meta"><i class="fa-regular fa-calendar"></i> ' + date2 + ' <span style="margin-left:8px"><i class="fa-regular fa-comment"></i> ' + comments2 + '</span></div>';
+    html += '</div></div>';
+  }
+  html += '</div></div>';
+  var el = document.getElementById(targetId);
+  if (el) el.innerHTML = html;
+}
+
+// --- Fun & Fashion Grid (3-col like screenshot) ---
+function funFashionGrid(json, targetId) {
+  var entries = json.feed.entry;
+  if (!entries) return;
+  var max = Math.min(6, entries.length);
+  var html = '<div class="cat-ff-layout">';
+  for (var i = 0; i < max; i++) {
+    var e = entries[i];
+    var url = getPostUrl(e);
+    var img = getPostImage(e);
+    var cat = getPostCategory(e);
+    var date = formatDate(e.published.$t);
+    html += '<div class="cat-ff-card">';
+    html += '<a href="' + url + '"><img src="' + img + '" alt=""/></a>';
+    html += '<div class="ff-card-overlay">';
+    html += '<h4 class="ff-card-title"><a href="' + url + '">' + e.title.$t.toUpperCase() + '</a></h4>';
+    html += '<div class="ff-card-meta">' + date;
+    if (cat) html += ' &bull; <a href="/search/label/' + encodeURIComponent(cat) + '">' + cat.toUpperCase() + '</a>';
+    html += '</div></div></div>';
+  }
+  html += '</div>';
+  var el = document.getElementById(targetId);
+  if (el) el.innerHTML = html;
+}
+
+// --- Slider Cards (International) ---
+function sliderCards(json, targetId) {
+  var entries = json.feed.entry;
+  if (!entries) return;
+  var max = Math.min(8, entries.length);
+  var html = '';
+  for (var i = 0; i < max; i++) {
+    var e = entries[i];
+    var url = getPostUrl(e);
+    var img = getPostImage(e);
+    var cat = getPostCategory(e);
+    var date = formatDate(e.published.$t);
+    html += '<div class="cat-slider-card">';
+    html += '<a href="' + url + '"><img src="' + img + '" alt=""/></a>';
+    html += '<div class="slider-overlay">';
+    html += '<h4 class="slider-title"><a href="' + url + '">' + e.title.$t.toUpperCase() + '</a></h4>';
+    html += '<div class="slider-meta">' + date;
+    if (cat) html += ' &bull; <a href="/search/label/' + encodeURIComponent(cat) + '">' + cat.toUpperCase() + '</a>';
+    html += '</div></div></div>';
+  }
+  var el = document.getElementById(targetId);
+  if (el) {
+    el.innerHTML = html;
+    $(el).slick({
+      dots: false, autoplay: true, infinite: true,
+      slidesToShow: 4, slidesToScroll: 1, speed: 300, arrows: true,
+      responsive: [
+        { breakpoint: 1024, settings: { slidesToShow: 3 } },
+        { breakpoint: 768, settings: { slidesToShow: 2 } },
+        { breakpoint: 480, settings: { slidesToShow: 1 } }
+      ]
+    });
+  }
+}
+
+// --- Latest Updates ---
+function latestUpdates(json) {
+  var entries = json.feed.entry;
+  if (!entries) return;
+  var totalPosts = entries.length;
+  var totalPages = Math.ceil(totalPosts / latestPostsPerPage);
+
+  function renderPage(page) {
+    var start = (page - 1) * latestPostsPerPage;
+    var end = Math.min(start + latestPostsPerPage, totalPosts);
+    var html = '';
+    for (var i = start; i < end; i++) {
+      var e = entries[i];
+      var url = getPostUrl(e);
+      var img = getPostImageHiRes(e);
+      var cat = getPostCategory(e);
+      var date = formatDateLong(e.published.$t);
+      var excerpt = getPostSummary(e, 200);
+
+      html += '<div class="latest-post-item">';
+      html += '<div class="latest-post-thumb"><a href="' + url + '"><img src="' + img + '" alt=""/></a></div>';
+      html += '<div class="latest-post-info">';
+      html += '<h2 class="lp-title"><a href="' + url + '">' + e.title.$t.toUpperCase() + '</a></h2>';
+      html += '<div class="lp-meta">' + date;
+      if (cat) html += '<span class="ppi-dot">&bull;</span><a href="/search/label/' + encodeURIComponent(cat) + '">' + cat.toUpperCase() + '</a>';
+      html += '</div>';
+      html += '<div class="lp-summary">' + excerpt + '...</div>';
+      html += '<a class="lp-readmore" href="' + url + '">READ MORE</a>';
+      html += '</div></div>';
+    }
+
+    html += '<div class="load-more-wrap">';
+    for (var p = 1; p <= totalPages; p++) {
+      html += '<span class="page-numbers' + (p === page ? ' active' : '') + '" data-page="' + p + '">' + p + '</span>';
+    }
+    if (page < totalPages) {
+      html += '<span class="page-numbers" data-page="' + (page + 1) + '">NEXT</span>';
+    }
+    html += '</div>';
+
+    var el = document.getElementById('latest-updates-output');
+    if (el) {
+      el.innerHTML = html;
+      var btns = el.querySelectorAll('.page-numbers');
+      for (var b = 0; b < btns.length; b++) {
+        btns[b].addEventListener('click', function() {
+          var pg = parseInt(this.getAttribute('data-page'));
+          renderPage(pg);
+          var target = document.getElementById('latest-updates-output');
+          if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+        });
+      }
+    }
+  }
+
+  renderPage(1);
+}
+
+// --- Related Articles (by same label + title similarity) ---
+function relatedArticles(json) {
+  var entries = json.feed.entry;
+  if (!entries) return;
+  var container = document.getElementById('related-articles-output');
+  if (!container) return;
+  var currentUrl = window.location.href;
+  var currentTitle = document.title.toLowerCase().replace(/[^a-z0-9\s]/g, '');
+  var currentWords = currentTitle.split(/\s+/).filter(function(w){ return w.length > 3; });
+
+  // Score each entry by title similarity
+  var scored = [];
+  for (var i = 0; i < entries.length; i++) {
+    var e = entries[i];
+    var eUrl = getPostUrl(e);
+    if (eUrl === currentUrl) continue;
+    var eTitle = e.title.$t.toLowerCase().replace(/[^a-z0-9\s]/g, '');
+    var eWords = eTitle.split(/\s+/);
+    var matchCount = 0;
+    for (var w = 0; w < currentWords.length; w++) {
+      for (var ew = 0; ew < eWords.length; ew++) {
+        if (currentWords[w] === eWords[ew]) { matchCount++; break; }
+      }
+    }
+    scored.push({ entry: e, score: matchCount, url: eUrl });
+  }
+  // Sort by similarity, then by latest
+  scored.sort(function(a, b) { return b.score - a.score; });
+
+  var max = Math.min(6, scored.length);
+  if (max === 0) { container.innerHTML = ''; return; }
+  var html = '<div class="related-grid">';
+  for (var j = 0; j < max; j++) {
+    var s = scored[j];
+    var e2 = s.entry;
+    var img = getPostImage(e2);
+    var date = formatDate(e2.published.$t);
+    html += '<div class="related-card">';
+    html += '<a href="' + s.url + '"><img src="' + img + '" alt=""/></a>';
+    html += '<div class="related-overlay">';
+    html += '<h4 class="related-title"><a href="' + s.url + '">' + e2.title.$t.toUpperCase() + '</a></h4>';
+    html += '<div class="related-meta">' + date + '</div>';
+    html += '</div></div>';
+  }
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+// --- Trending Posts ---
+function trendingPosts(targetId, num) {
+  var scr = document.createElement('script');
+  scr.src = '/feeds/posts/default?orderby=updated&max-results=' + num + '&alt=json-in-script&callback=_trendCb_' + targetId;
+  window['_trendCb_' + targetId] = function(json) {
+    var entries = json.feed.entry;
+    if (!entries) return;
+    var html = '<ul style="list-style:none;padding:0;margin:0;">';
+    for (var i = 0; i < entries.length; i++) {
+      var e = entries[i];
+      html += '<li style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #eee;">';
+      html += '<img src="' + getPostImage(e).replace('/s600/', '/s80-c/') + '" style="width:60px;height:60px;object-fit:cover;flex-shrink:0;border-radius:3px;" alt=""/>';
+      html += '<a href="' + getPostUrl(e) + '" style="font:700 13px Roboto,sans-serif;text-transform:uppercase;letter-spacing:0.2px;color:#222;line-height:1.4;">' + e.title.$t + '</a>';
+      html += '</li>';
+    }
+    html += '</ul>';
+    var el = document.getElementById(targetId);
+    if (el) el.innerHTML = html;
+  };
+  document.getElementsByTagName('head')[0].appendChild(scr);
+}
+//]]>
+    </script>
+
+  </head>
+
+  <body>
+    <b:class cond='data:view.isSingleItem' name='item-view'/>
+    <b:class cond='data:view.isHomepage' name='home-view'/>
+    <b:class cond='data:view.isMultipleItems' name='index-view'/>
+    <b:class cond='data:view.isSearch' name='search-view'/>
+    <b:class cond='data:view.isArchive' name='archive-view'/>
+    <b:class cond='data:view.isError' name='error-view'/>
+
+    <b:comment>skipNavigation hidden via CSS</b:comment>
+
+    <!-- ============================================
+         TOP BAR
+         ============================================ -->
+    <div class='top-bar'>
+      <div class='container'>
+        <div class='headline-left'>
+          <span class='headline-label'>Headlines</span>
+          <div class='headline-ticker' id='ticker-output'/>
+          <script type='text/javascript'>
+            (function(){
+              var s=document.createElement('script');
+              s.src='/feeds/posts/default?max-results=8&amp;orderby=published&amp;alt=json-in-script&amp;callback=headlineTicker';
+              document.getElementsByTagName('head')[0].appendChild(s);
+            })();
+          </script>
+        </div>
+        <div class='topbar-right'>
+          <span class='follow-text'>Follow</span>
+          <b:section id='top_social' showaddelement='false'>
+            <b:widget id='HTML1' locked='false' title='' type='HTML' version='1'>
+              <b:widget-settings>
+                <b:widget-setting name='content'>&lt;span class=&quot;top-social&quot;&gt;&lt;a href=&quot;#&quot; aria-label=&quot;Facebook&quot;&gt;&lt;i class=&quot;fa-brands fa-facebook-f&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href=&quot;#&quot; aria-label=&quot;Twitter&quot;&gt;&lt;i class=&quot;fa-brands fa-x-twitter&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href=&quot;#&quot; aria-label=&quot;Google&quot;&gt;&lt;i class=&quot;fa-brands fa-google-plus-g&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href=&quot;#&quot; aria-label=&quot;Pinterest&quot;&gt;&lt;i class=&quot;fa-brands fa-pinterest-p&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href=&quot;#&quot; aria-label=&quot;Instagram&quot;&gt;&lt;i class=&quot;fa-brands fa-instagram&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href=&quot;#&quot; aria-label=&quot;YouTube&quot;&gt;&lt;i class=&quot;fa-brands fa-youtube&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href=&quot;#&quot; aria-label=&quot;Tumblr&quot;&gt;&lt;i class=&quot;fa-brands fa-tumblr&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href=&quot;#&quot; aria-label=&quot;RSS&quot;&gt;&lt;i class=&quot;fa-solid fa-rss&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/span&gt;</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'>
+                <data:content/>
+              </b:includable>
+            </b:widget>
+          </b:section>
+          <button class='top-search-btn' id='topSearchToggle' type='button'><i class='fa-solid fa-magnifying-glass'/></button>
+        </div>
+      </div>
+      <div class='top-search-box' id='topSearchBox'>
+        <form action='/search' method='get'>
+          <input autocomplete='off' name='q' placeholder='Search...' type='search'/>
+        </form>
+      </div>
+    </div>
+
+    <!-- ============================================
+         HEADER
+         ============================================ -->
+    <div class='header-wrapper'>
+      <div class='container'>
+        <div class='header-inner'>
+          <div class='site-logo'>
+            <b:section id='header' maxwidgets='1' showaddelement='no'>
+              <b:widget id='Header1' locked='true' title='Edutech (Header)' type='Header' visible='true'>
+                <b:widget-settings>
+                  <b:widget-setting name='displayUrl'/>
+                  <b:widget-setting name='displayHeight'>0</b:widget-setting>
+                  <b:widget-setting name='sectionWidth'>-1</b:widget-setting>
+                  <b:widget-setting name='useImage'>false</b:widget-setting>
+                  <b:widget-setting name='shrinkToFit'>false</b:widget-setting>
+                  <b:widget-setting name='imagePlacement'>BEHIND</b:widget-setting>
+                  <b:widget-setting name='displayWidth'>0</b:widget-setting>
+                </b:widget-settings>
+                <b:includable id='main' var='this'>
+                  <b:include name='super.main'/>
+                </b:includable>
+              </b:widget>
+            </b:section>
+          </div>
+          <div class='header-ad'>
+            <b:section id='header_ad' showaddelement='yes'>
+              <b:widget id='HTML12' locked='false' title='' type='HTML' version='1'>
+                <b:widget-settings>
+                  <b:widget-setting name='content'>&lt;!-- Place your 728x90 ad banner here --&gt;</b:widget-setting>
+                </b:widget-settings>
+                <b:includable id='main'>
+                  <div class='widget-content'><data:content/></div>
+                </b:includable>
+              </b:widget>
+            </b:section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================
+         NAVIGATION
+         ============================================ -->
+    <div class='topbar-nav'>
+      <div class='container'>
+        <nav class='main-nav' id='main-nav'>
+          <b:section id='navmenu' showaddelement='false'>
+            <b:widget id='HTML9' locked='false' title='Main Menu' type='HTML' version='1'>
+              <b:widget-settings>
+                <b:widget-setting name='content'>&lt;ul class=&quot;nav-menu&quot;&gt;
+&lt;li class=&quot;home&quot;&gt;&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Social&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;has-sub&quot;&gt;&lt;a href=&quot;#&quot;&gt;Features&lt;/a&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Music&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Group&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Entertainment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Download&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Buy This Theme&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'>
+                <div class='widget-content'><data:content/></div>
+              </b:includable>
+            </b:widget>
+          </b:section>
+        </nav>
+        <button aria-label='Menu' class='mobile-menu-toggle' id='mobile-menu-btn'>
+          <i class='fa-solid fa-bars'/>
+        </button>
+      </div>
+    </div>
+
+    <!-- ============================================
+         HOMEPAGE
+         ============================================ -->
+    <b:if cond='data:view.isHomepage'>
+
+      <!-- Featured Slider + 2x2 Grid (full width) -->
+      <div class='featured-section'>
+        <div class='container'>
+          <b:section id='featured_section' showaddelement='false'>
+            <b:widget id='HTML2' locked='false' title='' type='HTML' version='1'>
+              <b:widget-settings>
+                <b:widget-setting name='content'>featured</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'>
+                <div class='featured-layout'>
+                  <div class='featured-slider' id='featured-slider-output'/>
+                  <div class='featured-grid' id='featured-grid-output'/>
+                </div>
+                <script type='text/javascript'>
+                  (function(){
+                    var s=document.createElement('script');
+                    s.src='/feeds/posts/default?max-results=9&amp;orderby=published&amp;alt=json-in-script&amp;callback=featuredSlider';
+                    document.getElementsByTagName('head')[0].appendChild(s);
+                  })();
+                </script>
+              </b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+      </div>
+
+      <!-- ============================================
+           MAIN 2-COLUMN: Categories left + Sidebar right (continuous)
+           ============================================ -->
+      <div class='home-body'>
+        <div class='container'>
+          <div class='home-two-col'>
+
+            <!-- LEFT COLUMN: All categories + ads + latest updates -->
+            <div class='home-main-col'>
+
+              <!-- Entertainment -->
+              <div class='cat-block'>
+                <b:section id='cat_section_1' showaddelement='yes'>
+                  <b:widget id='HTML3' locked='false' title='Entertainment' type='HTML' version='1'>
+                    <b:widget-settings>
+                      <b:widget-setting name='content'>Entertainment</b:widget-setting>
+                    </b:widget-settings>
+                    <b:includable id='main'>
+                      <div class='section-header'>
+                        <h2 class='section-title'><data:title/></h2>
+                      </div>
+                      <div expr:id='&quot;cat-ent-&quot; + data:widget.instanceId'/>
+                      <script type='text/javascript'>
+                        (function(){
+                          var label = &quot;<data:content/>&quot;;
+                          var tid = &quot;cat-ent-<data:widget.instanceId/>&quot;;
+                          var s=document.createElement('script');
+                          s.src='/feeds/posts/default/-/'+encodeURIComponent(label)+'?max-results=5&amp;orderby=published&amp;alt=json-in-script&amp;callback=_ce'+tid.replace(/-/g,'');
+                          window['_ce'+tid.replace(/-/g,'')] = function(json){ entertainmentLayout(json, tid); };
+                          document.getElementsByTagName('head')[0].appendChild(s);
+                        })();
+                      </script>
+                    </b:includable>
+                  </b:widget>
+                </b:section>
+              </div>
+
+              <!-- Fun &amp; Fashion (3-col grid) -->
+              <div class='cat-block'>
+                <b:section id='cat_section_2' showaddelement='yes'>
+                  <b:widget id='HTML10' locked='false' title='Fun &amp; Fashion' type='HTML' version='1'>
+                    <b:widget-settings>
+                      <b:widget-setting name='content'>Fashion</b:widget-setting>
+                    </b:widget-settings>
+                    <b:includable id='main'>
+                      <div class='section-header'>
+                        <h2 class='section-title'><data:title/></h2>
+                      </div>
+                      <div expr:id='&quot;cat-ff-&quot; + data:widget.instanceId'/>
+                      <script type='text/javascript'>
+                        (function(){
+                          var label = &quot;<data:content/>&quot;;
+                          var tid = &quot;cat-ff-<data:widget.instanceId/>&quot;;
+                          var s=document.createElement('script');
+                          s.src='/feeds/posts/default/-/'+encodeURIComponent(label)+'?max-results=6&amp;orderby=published&amp;alt=json-in-script&amp;callback=_cff'+tid.replace(/-/g,'');
+                          window['_cff'+tid.replace(/-/g,'')] = function(json){ funFashionGrid(json, tid); };
+                          document.getElementsByTagName('head')[0].appendChild(s);
+                        })();
+                      </script>
+                    </b:includable>
+                  </b:widget>
+                </b:section>
+              </div>
+
+              <!-- Ad Block between Fun&Fashion and International -->
+              <div class='ad-block'>
+                <b:section id='ad_between_cats' showaddelement='yes'>
+                  <b:widget id='HTML14' locked='false' title='' type='HTML' version='1'>
+                    <b:widget-settings>
+                      <b:widget-setting name='content'>&lt;!-- Place your ad code or image banner here (e.g. 728x90 or responsive) --&gt;</b:widget-setting>
+                    </b:widget-settings>
+                    <b:includable id='main'>
+                      <div class='widget-content ad-block'><data:content/></div>
+                    </b:includable>
+                  </b:widget>
+                </b:section>
+              </div>
+
+              <!-- International (Slider Carousel) -->
+              <div class='cat-block'>
+                <b:section id='cat_section_3' showaddelement='yes'>
+                  <b:widget id='HTML11' locked='false' title='International' type='HTML' version='1'>
+                    <b:widget-settings>
+                      <b:widget-setting name='content'>International</b:widget-setting>
+                    </b:widget-settings>
+                    <b:includable id='main'>
+                      <div class='section-header'>
+                        <h2 class='section-title'><data:title/></h2>
+                      </div>
+                      <div class='cat-slider-wrap' expr:id='&quot;cat-slider-&quot; + data:widget.instanceId'/>
+                      <script type='text/javascript'>
+                        (function(){
+                          var label = &quot;<data:content/>&quot;;
+                          var tid = &quot;cat-slider-<data:widget.instanceId/>&quot;;
+                          var s=document.createElement('script');
+                          s.src='/feeds/posts/default/-/'+encodeURIComponent(label)+'?max-results=8&amp;orderby=published&amp;alt=json-in-script&amp;callback=_cs'+tid.replace(/-/g,'');
+                          window['_cs'+tid.replace(/-/g,'')] = function(json){ sliderCards(json, tid); };
+                          document.getElementsByTagName('head')[0].appendChild(s);
+                        })();
+                      </script>
+                    </b:includable>
+                  </b:widget>
+                </b:section>
+              </div>
+
+              <!-- Latest Updates -->
+              <div class='cat-block'>
+                <div class='section-header'>
+                  <h2 class='section-title'>Latest Updates</h2>
+                </div>
+                <div id='latest-updates-output'/>
+                <script type='text/javascript'>
+                  (function(){
+                    var s=document.createElement('script');
+                    s.src='/feeds/posts/default?max-results=25&amp;orderby=published&amp;alt=json-in-script&amp;callback=latestUpdates';
+                    document.getElementsByTagName('head')[0].appendChild(s);
+                  })();
+                </script>
+              </div>
+
+              <!-- Ad block after Latest Updates -->
+              <div class='ad-block'>
+                <b:section id='ad_after_latest' showaddelement='yes'>
+                  <b:widget id='HTML15' locked='false' title='' type='HTML' version='1'>
+                    <b:widget-settings>
+                      <b:widget-setting name='content'>&lt;!-- Place your bottom ad code here --&gt;</b:widget-setting>
+                    </b:widget-settings>
+                    <b:includable id='main'>
+                      <div class='widget-content ad-block'><data:content/></div>
+                    </b:includable>
+                  </b:widget>
+                </b:section>
+              </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Sidebar - Home Only -->
+            <div class='home-sidebar-col'>
+              <aside class='sidebar'>
+                <b:section id='home_sidebar' preferred='yes' showaddelement='yes'>
+                  <b:widget id='FeaturedPost1' locked='false' title='Featured Post' type='FeaturedPost' visible='true'>
+                    <b:widget-settings>
+                      <b:widget-setting name='showSnippet'>true</b:widget-setting>
+                      <b:widget-setting name='showFirstImage'>true</b:widget-setting>
+                    </b:widget-settings>
+                    <b:includable id='main'>
+                      <b:include name='super.main'/>
+                    </b:includable>
+                  </b:widget>
+                  <b:widget id='PopularPosts2' locked='false' title='Popular Posts' type='PopularPosts' visible='true'>
+                    <b:widget-settings>
+                      <b:widget-setting name='numItemsToShow'>5</b:widget-setting>
+                      <b:widget-setting name='showThumbnails'>true</b:widget-setting>
+                      <b:widget-setting name='showSnippets'>false</b:widget-setting>
+                      <b:widget-setting name='timeRange'>ALL_TIME</b:widget-setting>
+                    </b:widget-settings>
+                    <b:includable id='main'>
+                      <b:include name='super.main'/>
+                    </b:includable>
+                  </b:widget>
+                  <b:widget id='HTML13' locked='false' title='Facebook Follow' type='HTML' version='1'>
+                    <b:widget-settings>
+                      <b:widget-setting name='content'>&lt;!-- Facebook page widget code here --&gt;</b:widget-setting>
+                    </b:widget-settings>
+                    <b:includable id='main'>
+                      <b:if cond='data:title != &quot;&quot;'><h3 class='title'><data:title/></h3></b:if>
+                      <div class='widget-content'><data:content/></div>
+                    </b:includable>
+                  </b:widget>
+                  <b:widget id='Label1' locked='false' title='Categories' type='Label' visible='true'>
+                    <b:widget-settings>
+                      <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+                      <b:widget-setting name='display'>LIST</b:widget-setting>
+                      <b:widget-setting name='showType'>ALL</b:widget-setting>
+                      <b:widget-setting name='showFreqNumbers'>true</b:widget-setting>
+                    </b:widget-settings>
+                    <b:includable id='main'>
+                      <b:include name='super.main'/>
+                    </b:includable>
+                  </b:widget>
+                  <b:widget id='HTML8' locked='false' title='About' type='HTML' version='1'>
+                    <b:widget-settings>
+                      <b:widget-setting name='content'>Edutech is your news, entertainment, music fashion website. We provide you with the latest breaking news and videos straight from the entertainment industry.</b:widget-setting>
+                    </b:widget-settings>
+                    <b:includable id='main'>
+                      <b:if cond='data:title != &quot;&quot;'><h3 class='title'><data:title/></h3></b:if>
+                      <div class='widget-content'><p style='font-size:14px;color:#555;line-height:1.8;font-family:Open Sans,sans-serif;'><data:content/></p></div>
+                    </b:includable>
+                  </b:widget>
+                  <b:widget id='HTML16' locked='false' title='Sidebar Ad' type='HTML' version='1'>
+                    <b:widget-settings>
+                      <b:widget-setting name='content'>&lt;!-- Place 300x250 or 300x600 ad here --&gt;</b:widget-setting>
+                    </b:widget-settings>
+                    <b:includable id='main'>
+                      <div class='widget-content ad-block'><data:content/></div>
+                    </b:includable>
+                  </b:widget>
+                  <b:widget id='HTML5' locked='false' title='Trending' type='HTML' version='1'>
+                    <b:widget-settings>
+                      <b:widget-setting name='content'/>
+                    </b:widget-settings>
+                    <b:includable id='main'>
+                      <b:if cond='data:title != &quot;&quot;'><h3 class='title'><data:title/></h3></b:if>
+                      <div class='widget-content' expr:id='&quot;trending-&quot; + data:widget.instanceId'/>
+                      <script type='text/javascript'>
+                        trendingPosts(&quot;trending-<data:widget.instanceId/>&quot;, 5);
+                      </script>
+                    </b:includable>
+                  </b:widget>
+                </b:section>
+              </aside>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </b:if>
+
+    <!-- ============================================
+         NON-HOMEPAGE
+         ============================================ -->
+    <b:if cond='!data:view.isHomepage'>
+      <div class='content-wrapper'>
+        <div class='container'>
+          <div class='content-layout'>
+            <main class='main-content' id='main-content' role='main' tabindex='-1'>
+
+              <b:if cond='data:view.isArchive or (data:view.isSearch and data:view.search.resultsMessageHtml)'>
+                <div class='post-filter-message'>
+                  <b:if cond='data:view.isArchive'>
+                    <data:view.archive.rangeMessage/>
+                  <b:elseif cond='data:view.isSearch and data:view.search.resultsMessageHtml'/>
+                    <data:view.search.resultsMessageHtml/>
+                  </b:if>
+                </div>
+              </b:if>
+
+              <b:section class='main' id='main_section' showaddelement='no'>
+                <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' visible='true'>
+                  <b:widget-settings>
+                    <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+                    <b:widget-setting name='showShareButtons'>true</b:widget-setting>
+                    <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+                    <b:widget-setting name='showAuthor'>true</b:widget-setting>
+                    <b:widget-setting name='showLabels'>true</b:widget-setting>
+                    <b:widget-setting name='showTimestamp'>true</b:widget-setting>
+                    <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+                    <b:widget-setting name='showInlineAds'>false</b:widget-setting>
+                    <b:widget-setting name='showReactions'>false</b:widget-setting>
+                  </b:widget-settings>
+                  <b:includable id='main'>
+                    <b:include name='super.main'/>
+                  </b:includable>
+                </b:widget>
+              </b:section>
+
+              <!-- Related Articles (Single Post Only) -->
+              <b:if cond='data:view.isSingleItem'>
+                <div class='related-articles'>
+                  <div class='section-header'>
+                    <h2 class='section-title'>Related Articles</h2>
+                  </div>
+                  <div id='related-articles-output'/>
+                  <script type='text/javascript'>
+                    (function(){
+                      var labels = [];
+                      var labelEls = document.querySelectorAll('.byline.post-labels a');
+                      for (var i = 0; i &lt; labelEls.length; i++) {
+                        labels.push(labelEls[i].textContent.trim());
+                      }
+                      var label = labels[0] || '';
+                      if (label) {
+                        var s = document.createElement('script');
+                        s.src = '/feeds/posts/default/-/' + encodeURIComponent(label) + '?max-results=20&amp;orderby=published&amp;alt=json-in-script&amp;callback=relatedArticles';
+                        document.getElementsByTagName('head')[0].appendChild(s);
+                      } else {
+                        var s2 = document.createElement('script');
+                        s2.src = '/feeds/posts/default?max-results=20&amp;orderby=published&amp;alt=json-in-script&amp;callback=relatedArticles';
+                        document.getElementsByTagName('head')[0].appendChild(s2);
+                      }
+                    })();
+                  </script>
+                </div>
+              </b:if>
+
+              <b:if cond='data:view.isError'>
+                <div class='error-404'>
+                  <h1>404</h1>
+                  <h2>Page Not Found</h2>
+                  <p>The page you are looking for doesn&#39;t exist or has been moved.</p>
+                  <a class='btn' expr:href='data:blog.homepageUrl'>Back to Homepage</a>
+                </div>
+              </b:if>
+
+            </main>
+          </div>
+        </div>
+      </div>
+    </b:if>
+
+    <!-- ============================================
+         SIDEBAR: SINGLE POST ONLY
+         (Outside b:if so it appears in Layout editor)
+         ============================================ -->
+    <div class='sidebar-inject-wrap' id='post-sidebar-wrap'>
+    <b:section id='post_sidebar' preferred='yes' showaddelement='yes'>
+      <b:widget id='HTML18' locked='false' title='About Author' type='HTML' version='1'>
+        <b:widget-settings>
+          <b:widget-setting name='content'>author</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <b:if cond='data:view.isSingleItem'>
+            <h3 class='title'>About Author</h3>
+            <div class='widget-content' id='auto-author-widget'>
+              <div class='auto-author-box' style='text-align:center;padding:10px 0;'>
+                <div class='auto-author-avatar' id='auto-author-avatar'/>
+                <h4 class='auto-author-name' id='auto-author-name' style='margin:8px 0 5px;font-family:Roboto,sans-serif;font-weight:700;'/>
+              </div>
+            </div>
+          </b:if>
+        </b:includable>
+      </b:widget>
+      <b:widget id='HTML19' locked='false' title='Post Ad' type='HTML' version='1'>
+        <b:widget-settings>
+          <b:widget-setting name='content'>&lt;!-- Place 300x250 ad for single post sidebar here --&gt;</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <b:if cond='data:view.isSingleItem'>
+            <div class='widget-content ad-block'><data:content/></div>
+          </b:if>
+        </b:includable>
+      </b:widget>
+      <b:widget id='PopularPosts4' locked='false' title='Related Posts' type='PopularPosts' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='numItemsToShow'>5</b:widget-setting>
+          <b:widget-setting name='showThumbnails'>true</b:widget-setting>
+          <b:widget-setting name='showSnippets'>false</b:widget-setting>
+          <b:widget-setting name='timeRange'>ALL_TIME</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <b:if cond='data:view.isSingleItem'>
+            <b:include name='super.main'/>
+          </b:if>
+        </b:includable>
+      </b:widget>
+    </b:section>
+    </div>
+
+    <!-- ============================================
+         SIDEBAR: ALL PAGES (except Home)
+         (Outside b:if so it appears in Layout editor)
+         ============================================ -->
+    <div class='sidebar-inject-wrap' id='all-sidebar-wrap'>
+    <b:section id='sidebar_section' preferred='yes' showaddelement='yes'>
+      <b:widget id='PopularPosts1' locked='false' title='Popular Posts' type='PopularPosts' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='numItemsToShow'>5</b:widget-setting>
+          <b:widget-setting name='showThumbnails'>true</b:widget-setting>
+          <b:widget-setting name='showSnippets'>false</b:widget-setting>
+          <b:widget-setting name='timeRange'>ALL_TIME</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <b:if cond='!data:view.isHomepage'>
+            <b:include name='super.main'/>
+          </b:if>
+        </b:includable>
+      </b:widget>
+
+      <b:widget id='Label3' locked='false' title='Categories' type='Label' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+          <b:widget-setting name='display'>LIST</b:widget-setting>
+          <b:widget-setting name='showType'>ALL</b:widget-setting>
+          <b:widget-setting name='showFreqNumbers'>true</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <b:if cond='!data:view.isHomepage'>
+            <b:include name='super.main'/>
+          </b:if>
+        </b:includable>
+      </b:widget>
+
+      <b:widget id='HTML4' locked='false' title='Follow Us' type='HTML' version='1'>
+        <b:widget-settings>
+          <b:widget-setting name='content'>&lt;div class=&quot;social-icons&quot;&gt;
+&lt;a href=&quot;#&quot; aria-label=&quot;Facebook&quot;&gt;&lt;i class=&quot;fa-brands fa-facebook-f&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;a href=&quot;#&quot; aria-label=&quot;Twitter&quot;&gt;&lt;i class=&quot;fa-brands fa-x-twitter&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;a href=&quot;#&quot; aria-label=&quot;Instagram&quot;&gt;&lt;i class=&quot;fa-brands fa-instagram&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;a href=&quot;#&quot; aria-label=&quot;YouTube&quot;&gt;&lt;i class=&quot;fa-brands fa-youtube&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <b:if cond='!data:view.isHomepage'>
+            <b:if cond='data:title != &quot;&quot;'><h3 class='title'><data:title/></h3></b:if>
+            <div class='widget-content'><data:content/></div>
+          </b:if>
+        </b:includable>
+      </b:widget>
+
+      <b:widget id='PopularPosts3' locked='false' title='Trending' type='PopularPosts' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='numItemsToShow'>5</b:widget-setting>
+          <b:widget-setting name='showThumbnails'>true</b:widget-setting>
+          <b:widget-setting name='showSnippets'>false</b:widget-setting>
+          <b:widget-setting name='timeRange'>ALL_TIME</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <b:if cond='!data:view.isHomepage'>
+            <b:include name='super.main'/>
+          </b:if>
+        </b:includable>
+      </b:widget>
+    </b:section>
+    </div>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer id='main-footer'>
+      <div class='container'>
+        <div class='footer-grid'>
+          <b:section class='footer-col' id='footer_1' showaddelement='yes'>
+            <b:widget id='HTML6' locked='false' title='About' type='HTML' version='1'>
+              <b:widget-settings>
+                <b:widget-setting name='content'>Edutech is your news, entertainment, music fashion website. We provide you with the latest breaking news and videos straight from the entertainment industry.</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'>
+                <b:if cond='data:title != &quot;&quot;'><h3><data:title/></h3></b:if>
+                <div class='widget-content'><p><data:content/></p></div>
+              </b:includable>
+            </b:widget>
+          </b:section>
+
+          <b:section class='footer-col' id='footer_2' showaddelement='yes'>
+            <b:widget id='Label2' locked='false' title='Popular Labels' type='Label' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+                <b:widget-setting name='display'>CLOUD</b:widget-setting>
+                <b:widget-setting name='showType'>ALL</b:widget-setting>
+                <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'>
+                <b:include name='super.main'/>
+              </b:includable>
+            </b:widget>
+          </b:section>
+
+          <b:section class='footer-col' id='footer_3' showaddelement='yes'>
+            <b:widget id='HTML7' locked='false' title='Follow Us' type='HTML' version='1'>
+              <b:widget-settings>
+                <b:widget-setting name='content'>&lt;div class=&quot;social-icons&quot;&gt;
+&lt;a href=&quot;#&quot; aria-label=&quot;Facebook&quot;&gt;&lt;i class=&quot;fa-brands fa-facebook-f&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;a href=&quot;#&quot; aria-label=&quot;Twitter&quot;&gt;&lt;i class=&quot;fa-brands fa-x-twitter&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;a href=&quot;#&quot; aria-label=&quot;Instagram&quot;&gt;&lt;i class=&quot;fa-brands fa-instagram&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;a href=&quot;#&quot; aria-label=&quot;YouTube&quot;&gt;&lt;i class=&quot;fa-brands fa-youtube&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;a href=&quot;#&quot; aria-label=&quot;Pinterest&quot;&gt;&lt;i class=&quot;fa-brands fa-pinterest-p&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;a href=&quot;#&quot; aria-label=&quot;Tumblr&quot;&gt;&lt;i class=&quot;fa-brands fa-tumblr&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;a href=&quot;#&quot; aria-label=&quot;RSS&quot;&gt;&lt;i class=&quot;fa-solid fa-rss&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'>
+                <b:if cond='data:title != &quot;&quot;'><h3><data:title/></h3></b:if>
+                <div class='widget-content'><data:content/></div>
+              </b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+      </div>
+      <!-- Footer Copyright - editable from Layout -->
+      <div class='footer-bottom'>
+        <div class='container'>
+          <b:section id='footer_copyright' showaddelement='yes'>
+            <b:widget id='HTML17' locked='false' title='' type='HTML' version='1'>
+              <b:widget-settings>
+                <b:widget-setting name='content'>COPYRIGHT &amp;copy; 2025 EDUTECH. DESIGNED BY &lt;a href=&quot;#&quot;&gt;EDUCHAINMAGTHEMES&lt;/a&gt;</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'>
+                <div class='widget-content'><data:content/></div>
+              </b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <div class='back-to-top' id='back-to-top'>
+      <i class='fa-solid fa-arrow-up'/>
+    </div>
+
+    <!-- Slick Slider JS -->
+    <script src='https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js'/>
+    <!-- SlickNav -->
+    <script src='https://cdn.jsdelivr.net/npm/slicknav@1.0.10/dist/jquery.slicknav.min.js'/>
+
+    <script type='text/javascript'>
+//<![CDATA[
+$(document).ready(function(){
+  // Mobile menu
+  if (typeof $.fn.slicknav === 'function') {
+    $('#main-nav .nav-menu').slicknav({
+      prependTo: '.topbar-nav .container',
+      label: '',
+      closedSymbol: '<i class="fa-solid fa-plus"></i>',
+      openedSymbol: '<i class="fa-solid fa-minus"></i>'
+    });
+  }
+
+  // Top search toggle
+  $('#topSearchToggle').click(function(e){
+    e.stopPropagation();
+    $('#topSearchBox').toggleClass('active');
+  });
+  $(document).click(function(){ $('#topSearchBox').removeClass('active'); });
+  $('#topSearchBox').click(function(e){ e.stopPropagation(); });
+
+  // Back to top
+  var $btt = $('#back-to-top');
+  $btt.hide();
+  $(window).scroll(function(){
+    if ($(this).scrollTop() > 300) { $btt.fadeIn('slow'); }
+    else { $btt.fadeOut('slow'); }
+  });
+  $btt.click(function(){ $('html, body').animate({scrollTop:0},'slow'); });
+
+  // Auto-init new HTML widgets in cat_section_2 as funFashionGrid
+  $('#cat_section_2 .widget.HTML').each(function(){
+    var $w = $(this);
+    // Skip if already initialized (has cat-ff- div with content)
+    if ($w.find('.cat-ff-layout').length) return;
+    // Find the widget content (label name)
+    var $content = $w.find('.widget-content');
+    if (!$content.length) return;
+    var label = $.trim($content.text());
+    if (!label) return;
+    // Create a target container
+    var tid = 'cat-ff-auto-' + $w.attr('id');
+    var $title = $w.find('.title, h3, h2').first();
+    var titleText = $title.length ? $title.text() : label;
+    var html = '<div class="section-header"><h2 class="section-title">' + titleText + '</h2></div>';
+    html += '<div id="' + tid + '"></div>';
+    $content.html(html);
+    // Load feed
+    var s = document.createElement('script');
+    var cbName = '_cff' + tid.replace(/-/g, '');
+    window[cbName] = function(json) { funFashionGrid(json, tid); };
+    s.src = '/feeds/posts/default/-/' + encodeURIComponent(label) + '?max-results=6&orderby=published&alt=json-in-script&callback=' + cbName;
+    document.getElementsByTagName('head')[0].appendChild(s);
+  });
+});
+//]]>
+    </script>
+
+    <!-- Inject sidebar sections into content-layout on non-homepage views -->
+    <b:if cond='!data:view.isHomepage'>
+    <script type='text/javascript'>
+    //<![CDATA[
+    (function(){
+      var layout = document.querySelector('.content-layout');
+      if (!layout) return;
+      var aside = document.createElement('aside');
+      aside.className = 'sidebar';
+      aside.id = 'sidebar-injected';
+      var ps = document.getElementById('post_sidebar');
+      var ss = document.getElementById('sidebar_section');
+      if (ps) aside.appendChild(ps);
+      if (ss) aside.appendChild(ss);
+      layout.appendChild(aside);
+      // Remove the now-empty wrapper divs
+      var pw = document.getElementById('post-sidebar-wrap');
+      var aw = document.getElementById('all-sidebar-wrap');
+      if (pw && pw.parentNode) pw.parentNode.removeChild(pw);
+      if (aw && aw.parentNode) aw.parentNode.removeChild(aw);
+    })();
+    //]]>
+    </script>
+    </b:if>
+
+    <!-- Inject share buttons on single post pages -->
+    <b:if cond='data:view.isSingleItem'>
+    <script type='text/javascript'>
+    //<![CDATA[
+    (function(){
+      var postBody = document.querySelector('.post-body');
+      if (!postBody) return;
+      // Check if custom share buttons already exist (from includable override)
+      if (document.querySelector('.custom-share-buttons')) return;
+      var url = encodeURIComponent(window.location.href);
+      var title = encodeURIComponent(document.title);
+      var html = '<div class="custom-share-buttons">' +
+        '<span class="share-label">SHARE:</span>' +
+        '<a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=' + url + '" target="_blank" rel="noopener noreferrer" title="Share to Facebook" onclick="window.open(this.href,\'fb\',\'width=600,height=400\');return false;"><i class="fa-brands fa-facebook-f"></i></a>' +
+        '<a class="share-btn share-tw" href="https://twitter.com/intent/tweet?url=' + url + '&text=' + title + '" target="_blank" rel="noopener noreferrer" title="Share to Twitter" onclick="window.open(this.href,\'tw\',\'width=600,height=400\');return false;"><i class="fa-brands fa-x-twitter"></i></a>' +
+        '<a class="share-btn share-wa" href="https://api.whatsapp.com/send?text=' + title + ' ' + url + '" target="_blank" rel="noopener noreferrer" title="Share to WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>' +
+        '<a class="share-btn share-tg" href="https://t.me/share/url?url=' + url + '&text=' + title + '" target="_blank" rel="noopener noreferrer" title="Share to Telegram" onclick="window.open(this.href,\'tg\',\'width=600,height=400\');return false;"><i class="fa-brands fa-telegram"></i></a>' +
+        '</div>';
+      postBody.insertAdjacentHTML('afterend', html);
+    })();
+    //]]>
+    </script>
+    </b:if>
+
+    <!-- Auto-populate author + JS breadcrumb on single post -->
+    <b:if cond='data:view.isSingleItem'>
+    <script type='text/javascript'>
+    //<![CDATA[
+    (function(){
+      // Auto-populate author widget from post metadata
+      var authorEl = document.querySelector('.post-author-name, .post-author a, .fn.author, .byline.post-author a, span.fn, .post-header .fn');
+      var authorName = '';
+      if (authorEl) {
+        authorName = authorEl.textContent.trim();
+      }
+      if (!authorName) {
+        // Try from Blogger's structured data
+        var metaAuthor = document.querySelector('meta[name="author"]');
+        if (metaAuthor) authorName = metaAuthor.getAttribute('content');
+      }
+      if (!authorName) {
+        // Fallback: look for author in post byline area
+        var bylines = document.querySelectorAll('.post-header .byline');
+        for (var i = 0; i < bylines.length; i++) {
+          var txt = bylines[i].textContent.trim();
+          if (txt && !txt.match(/^\d/) && !txt.match(/comment/i)) {
+            authorName = txt;
+            break;
+          }
+        }
+      }
+      var nameEl = document.getElementById('auto-author-name');
+      var avatarEl = document.getElementById('auto-author-avatar');
+      if (nameEl && authorName) {
+        nameEl.textContent = authorName;
+      } else if (nameEl) {
+        nameEl.textContent = 'Author';
+      }
+      if (avatarEl && authorName) {
+        var initial = authorName.charAt(0).toUpperCase();
+        avatarEl.innerHTML = '<div style="width:70px;height:70px;border-radius:50%;background:#2C91E1;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;font-family:Roboto,sans-serif;margin-bottom:5px;">' + initial + '</div>';
+      }
+
+      // JS-based breadcrumb (ensure it shows above the post title)
+      var mainContent = document.getElementById('main-content');
+      if (!mainContent) return;
+      // Remove any existing Blogger breadcrumb nav elements
+      var navs = mainContent.querySelectorAll('nav');
+      for (var n = 0; n < navs.length; n++) {
+        navs[n].style.display = 'none';
+      }
+      // Also check blog-posts level
+      var blogPosts = document.querySelector('.blog-posts');
+      if (blogPosts) {
+        var bpNavs = blogPosts.querySelectorAll('nav');
+        for (var bn = 0; bn < bpNavs.length; bn++) {
+          bpNavs[bn].style.display = 'none';
+        }
+      }
+      // Check if custom breadcrumb already exists (from includable)
+      if (document.querySelector('.custom-breadcrumb')) return;
+      // Build breadcrumb from post labels
+      var labels = document.querySelectorAll('.byline.post-labels a');
+      var crumb = '<div class="custom-breadcrumb">';
+      crumb += '<a href="/">Home</a>';
+      if (labels.length > 0) {
+        crumb += '<span class="sep">&gt;</span>';
+        crumb += '<a href="' + labels[0].href + '">' + labels[0].textContent.trim() + '</a>';
+      }
+      crumb += '<span class="sep">&gt;</span>';
+      var postTitle = document.querySelector('.post-title');
+      var titleText = postTitle ? postTitle.textContent.trim() : document.title;
+      crumb += '<span class="current">' + titleText + '</span>';
+      crumb += '</div>';
+      // Insert before the first post
+      var firstPost = mainContent.querySelector('.blog-posts, .post-outer-container, .post-outer');
+      if (firstPost) {
+        firstPost.insertAdjacentHTML('beforebegin', crumb);
+      } else {
+        mainContent.insertAdjacentHTML('afterbegin', crumb);
+      }
+    })();
+    //]]>
+    </script>
+    </b:if>
+
+  </body>
+</html>
