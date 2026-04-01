@@ -103,4 +103,4 @@ The primary color (`#2C91E1`) can be changed from **Theme** â†’ **Customize** â†
 
 ## License
 
-Designed by EduChainMagThemes. Free for personal and commercial use.
+Licensed under the [Apache License 2.0](LICENSE). See the LICENSE file for details.
