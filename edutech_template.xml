@@ -9,12 +9,12 @@
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&amp;family=Roboto:wght@400;500;700;900&amp;family=Montserrat:wght@400;600;700;800&amp;display=swap' rel='stylesheet'/>
     <!-- Font Awesome 6 -->
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet'/>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' integrity='sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g' crossorigin='anonymous' rel='stylesheet'/>
     <!-- jQuery -->
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'/>
+    <script integrity='sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs' crossorigin='anonymous' src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'/>
     <!-- Slick Slider CSS -->
-    <link href='https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' rel='stylesheet'/>
-    <link href='https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css' rel='stylesheet'/>
+    <link href='https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' integrity='sha384-MUdXdzn1OB/0zkr4yGLnCqZ/n9ut5N7Ifes9RP2d5xKsTtcPiuiwthWczWuiqFOn' crossorigin='anonymous' rel='stylesheet'/>
+    <link href='https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css' integrity='sha384-3wRRg17hVCopINZVYCqnfbgXE7aFPSvawmLWNPSiUPVx+HxY+yxb5Cwp5mT7RXPD' crossorigin='anonymous' rel='stylesheet'/>
 
     <b:skin version='1.0.0'><![CDATA[
 /*
@@ -1736,9 +1736,23 @@ div[class*='share'] img[src*='share'] { display: none !important; }
     <!-- JavaScript -->
     <script type='text/javascript'>
 //<![CDATA[
-var imgFallback = "https://via.placeholder.com/600x400?text=No+Image";
+var imgFallback = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' fill='%23e0e0e0'%3E%3Crect width='600' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='24' fill='%23999'%3ENo Image%3C/text%3E%3C/svg%3E";
 var summaryPost = 170;
 var latestPostsPerPage = 7;
+
+// Security: HTML escape utility to prevent XSS
+function escapeHtml(str) {
+  if (!str) return '';
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+// Security: URL validation to prevent javascript: protocol injection
+function safeUrl(url) {
+  if (!url) return '#';
+  if (/^https?:\/\//i.test(url) || url.charAt(0) === '/') return url;
+  return '#';
+}
 
 function removeHtmlTag(str, chop) {
   if (!str) return '';
@@ -1786,7 +1800,7 @@ function getPostImageHiRes(entry) {
 }
 function getPostUrl(entry) {
   for (var k = 0; k < entry.link.length; k++) {
-    if (entry.link[k].rel === 'alternate') return entry.link[k].href;
+    if (entry.link[k].rel === 'alternate') return safeUrl(entry.link[k].href);
   }
   return '#';
 }
@@ -1795,7 +1809,7 @@ function getPostCategory(entry) {
 }
 function getPostSummary(entry, len) {
   var content = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
-  return removeHtmlTag(content, len || summaryPost);
+  return escapeHtml(removeHtmlTag(content, len || summaryPost));
 }
 function getCommentCount(entry) {
   return entry.thr$total ? entry.thr$total.$t : '0';
@@ -1807,7 +1821,7 @@ function headlineTicker(json) {
   if (!entries) return;
   var html = '';
   for (var i = 0; i < entries.length; i++) {
-    html += '<a href="' + getPostUrl(entries[i]) + '">' + entries[i].title.$t + '</a>';
+    html += '<a href="' + getPostUrl(entries[i]) + '">' + escapeHtml(entries[i].title.$t) + '</a>';
   }
   html = html + html;
   var el = document.getElementById('ticker-output');
@@ -1835,8 +1849,8 @@ function featuredSlider(json) {
     sliderHtml += '<div class="slide-item">';
     sliderHtml += '<img src="' + img + '" alt=""/>';
     sliderHtml += '<div class="slide-overlay">';
-    if (cat) sliderHtml += '<a class="slide-cat" href="/search/label/' + encodeURIComponent(cat) + '">' + cat + '</a>';
-    sliderHtml += '<h2 class="slide-title"><a href="' + url + '">' + e.title.$t.toUpperCase() + '</a></h2>';
+    if (cat) sliderHtml += '<a class="slide-cat" href="/search/label/' + encodeURIComponent(cat) + '">' + escapeHtml(cat) + '</a>';
+    sliderHtml += '<h2 class="slide-title"><a href="' + url + '">' + escapeHtml(e.title.$t).toUpperCase() + '</a></h2>';
     sliderHtml += '<div class="slide-meta"><span><i class="fa-regular fa-calendar"></i> ' + date + '</span> <span><i class="fa-regular fa-comment"></i> ' + comments + '</span></div>';
     sliderHtml += '</div></div>';
   }
@@ -1860,8 +1874,8 @@ function featuredSlider(json) {
     gridHtml += '<div class="featured-grid-card">';
     gridHtml += '<a href="' + url2 + '"><img src="' + img2 + '" alt=""/></a>';
     gridHtml += '<div class="grid-card-overlay">';
-    if (cat2) gridHtml += '<a class="grid-card-cat" href="/search/label/' + encodeURIComponent(cat2) + '">' + cat2 + '</a>';
-    gridHtml += '<h3 class="grid-card-title"><a href="' + url2 + '">' + e2.title.$t.toUpperCase() + '</a></h3>';
+    if (cat2) gridHtml += '<a class="grid-card-cat" href="/search/label/' + encodeURIComponent(cat2) + '">' + escapeHtml(cat2) + '</a>';
+    gridHtml += '<h3 class="grid-card-title"><a href="' + url2 + '">' + escapeHtml(e2.title.$t).toUpperCase() + '</a></h3>';
     gridHtml += '</div></div>';
   }
   var gridEl = document.getElementById('featured-grid-output');
@@ -1882,7 +1896,7 @@ function entertainmentLayout(json, targetId) {
     html += '<div class="cat-big-card">';
     html += '<a href="' + url + '"><img src="' + img + '" alt=""/></a>';
     html += '<div class="cat-overlay">';
-    html += '<h3 class="cat-title"><a href="' + url + '">' + e.title.$t.toUpperCase() + '</a></h3>';
+    html += '<h3 class="cat-title"><a href="' + url + '">' + escapeHtml(e.title.$t).toUpperCase() + '</a></h3>';
     html += '<div class="cat-summary">' + excerpt + '</div>';
     html += '<div class="cat-meta"><i class="fa-regular fa-calendar"></i> ' + date + '</div>';
     html += '</div></div>';
@@ -1897,7 +1911,7 @@ function entertainmentLayout(json, targetId) {
     html += '<div class="cat-small-item">';
     html += '<div class="item-thumb"><a href="' + url2 + '"><img src="' + img2.replace('/s600/', '/s200/') + '" alt=""/></a></div>';
     html += '<div class="item-info">';
-    html += '<h4 class="item-title"><a href="' + url2 + '">' + e2.title.$t.toUpperCase() + '</a></h4>';
+    html += '<h4 class="item-title"><a href="' + url2 + '">' + escapeHtml(e2.title.$t).toUpperCase() + '</a></h4>';
     html += '<div class="item-meta"><i class="fa-regular fa-calendar"></i> ' + date2 + ' <span style="margin-left:8px"><i class="fa-regular fa-comment"></i> ' + comments2 + '</span></div>';
     html += '</div></div>';
   }
@@ -1921,9 +1935,9 @@ function funFashionGrid(json, targetId) {
     html += '<div class="cat-ff-card">';
     html += '<a href="' + url + '"><img src="' + img + '" alt=""/></a>';
     html += '<div class="ff-card-overlay">';
-    html += '<h4 class="ff-card-title"><a href="' + url + '">' + e.title.$t.toUpperCase() + '</a></h4>';
+    html += '<h4 class="ff-card-title"><a href="' + url + '">' + escapeHtml(e.title.$t).toUpperCase() + '</a></h4>';
     html += '<div class="ff-card-meta">' + date;
-    if (cat) html += ' &bull; <a href="/search/label/' + encodeURIComponent(cat) + '">' + cat.toUpperCase() + '</a>';
+    if (cat) html += ' &bull; <a href="/search/label/' + encodeURIComponent(cat) + '">' + escapeHtml(cat).toUpperCase() + '</a>';
     html += '</div></div></div>';
   }
   html += '</div>';
@@ -1946,9 +1960,9 @@ function sliderCards(json, targetId) {
     html += '<div class="cat-slider-card">';
     html += '<a href="' + url + '"><img src="' + img + '" alt=""/></a>';
     html += '<div class="slider-overlay">';
-    html += '<h4 class="slider-title"><a href="' + url + '">' + e.title.$t.toUpperCase() + '</a></h4>';
+    html += '<h4 class="slider-title"><a href="' + url + '">' + escapeHtml(e.title.$t).toUpperCase() + '</a></h4>';
     html += '<div class="slider-meta">' + date;
-    if (cat) html += ' &bull; <a href="/search/label/' + encodeURIComponent(cat) + '">' + cat.toUpperCase() + '</a>';
+    if (cat) html += ' &bull; <a href="/search/label/' + encodeURIComponent(cat) + '">' + escapeHtml(cat).toUpperCase() + '</a>';
     html += '</div></div></div>';
   }
   var el = document.getElementById(targetId);
@@ -1988,9 +2002,9 @@ function latestUpdates(json) {
       html += '<div class="latest-post-item">';
       html += '<div class="latest-post-thumb"><a href="' + url + '"><img src="' + img + '" alt=""/></a></div>';
       html += '<div class="latest-post-info">';
-      html += '<h2 class="lp-title"><a href="' + url + '">' + e.title.$t.toUpperCase() + '</a></h2>';
+      html += '<h2 class="lp-title"><a href="' + url + '">' + escapeHtml(e.title.$t).toUpperCase() + '</a></h2>';
       html += '<div class="lp-meta">' + date;
-      if (cat) html += '<span class="ppi-dot">&bull;</span><a href="/search/label/' + encodeURIComponent(cat) + '">' + cat.toUpperCase() + '</a>';
+      if (cat) html += '<span class="ppi-dot">&bull;</span><a href="/search/label/' + encodeURIComponent(cat) + '">' + escapeHtml(cat).toUpperCase() + '</a>';
       html += '</div>';
       html += '<div class="lp-summary">' + excerpt + '...</div>';
       html += '<a class="lp-readmore" href="' + url + '">READ MORE</a>';
@@ -2064,7 +2078,7 @@ function relatedArticles(json) {
     html += '<div class="related-card">';
     html += '<a href="' + s.url + '"><img src="' + img + '" alt=""/></a>';
     html += '<div class="related-overlay">';
-    html += '<h4 class="related-title"><a href="' + s.url + '">' + e2.title.$t.toUpperCase() + '</a></h4>';
+    html += '<h4 class="related-title"><a href="' + s.url + '">' + escapeHtml(e2.title.$t).toUpperCase() + '</a></h4>';
     html += '<div class="related-meta">' + date + '</div>';
     html += '</div></div>';
   }
@@ -2084,12 +2098,13 @@ function trendingPosts(targetId, num) {
       var e = entries[i];
       html += '<li style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #eee;">';
       html += '<img src="' + getPostImage(e).replace('/s600/', '/s80-c/') + '" style="width:60px;height:60px;object-fit:cover;flex-shrink:0;border-radius:3px;" alt=""/>';
-      html += '<a href="' + getPostUrl(e) + '" style="font:700 13px Roboto,sans-serif;text-transform:uppercase;letter-spacing:0.2px;color:#222;line-height:1.4;">' + e.title.$t + '</a>';
+      html += '<a href="' + getPostUrl(e) + '" style="font:700 13px Roboto,sans-serif;text-transform:uppercase;letter-spacing:0.2px;color:#222;line-height:1.4;">' + escapeHtml(e.title.$t) + '</a>';
       html += '</li>';
     }
     html += '</ul>';
     var el = document.getElementById(targetId);
     if (el) el.innerHTML = html;
+    delete window['_trendCb_' + targetId];
   };
   document.getElementsByTagName('head')[0].appendChild(scr);
 }
@@ -2206,7 +2221,6 @@ function trendingPosts(targetId, num) {
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Entertainment&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Download&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Buy This Theme&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</b:widget-setting>
               </b:widget-settings>
               <b:includable id='main'>
@@ -2276,11 +2290,11 @@ function trendingPosts(targetId, num) {
                       <div expr:id='&quot;cat-ent-&quot; + data:widget.instanceId'/>
                       <script type='text/javascript'>
                         (function(){
-                          var label = &quot;<data:content/>&quot;;
+                          var label = &quot;<data:content.jsEscaped/>&quot;;
                           var tid = &quot;cat-ent-<data:widget.instanceId/>&quot;;
                           var s=document.createElement('script');
                           s.src='/feeds/posts/default/-/'+encodeURIComponent(label)+'?max-results=5&amp;orderby=published&amp;alt=json-in-script&amp;callback=_ce'+tid.replace(/-/g,'');
-                          window['_ce'+tid.replace(/-/g,'')] = function(json){ entertainmentLayout(json, tid); };
+                          window['_ce'+tid.replace(/-/g,'')] = function(json){ entertainmentLayout(json, tid); delete window['_ce'+tid.replace(/-/g,'')]; };
                           document.getElementsByTagName('head')[0].appendChild(s);
                         })();
                       </script>
@@ -2303,11 +2317,11 @@ function trendingPosts(targetId, num) {
                       <div expr:id='&quot;cat-ff-&quot; + data:widget.instanceId'/>
                       <script type='text/javascript'>
                         (function(){
-                          var label = &quot;<data:content/>&quot;;
+                          var label = &quot;<data:content.jsEscaped/>&quot;;
                           var tid = &quot;cat-ff-<data:widget.instanceId/>&quot;;
                           var s=document.createElement('script');
                           s.src='/feeds/posts/default/-/'+encodeURIComponent(label)+'?max-results=6&amp;orderby=published&amp;alt=json-in-script&amp;callback=_cff'+tid.replace(/-/g,'');
-                          window['_cff'+tid.replace(/-/g,'')] = function(json){ funFashionGrid(json, tid); };
+                          window['_cff'+tid.replace(/-/g,'')] = function(json){ funFashionGrid(json, tid); delete window['_cff'+tid.replace(/-/g,'')]; };
                           document.getElementsByTagName('head')[0].appendChild(s);
                         })();
                       </script>
@@ -2344,11 +2358,11 @@ function trendingPosts(targetId, num) {
                       <div class='cat-slider-wrap' expr:id='&quot;cat-slider-&quot; + data:widget.instanceId'/>
                       <script type='text/javascript'>
                         (function(){
-                          var label = &quot;<data:content/>&quot;;
+                          var label = &quot;<data:content.jsEscaped/>&quot;;
                           var tid = &quot;cat-slider-<data:widget.instanceId/>&quot;;
                           var s=document.createElement('script');
                           s.src='/feeds/posts/default/-/'+encodeURIComponent(label)+'?max-results=8&amp;orderby=published&amp;alt=json-in-script&amp;callback=_cs'+tid.replace(/-/g,'');
-                          window['_cs'+tid.replace(/-/g,'')] = function(json){ sliderCards(json, tid); };
+                          window['_cs'+tid.replace(/-/g,'')] = function(json){ sliderCards(json, tid); delete window['_cs'+tid.replace(/-/g,'')]; };
                           document.getElementsByTagName('head')[0].appendChild(s);
                         })();
                       </script>
@@ -2727,7 +2741,7 @@ function trendingPosts(targetId, num) {
           <b:section id='footer_copyright' showaddelement='yes'>
             <b:widget id='HTML17' locked='false' title='' type='HTML' version='1'>
               <b:widget-settings>
-                <b:widget-setting name='content'>COPYRIGHT &amp;copy; 2025 EDUTECH. DESIGNED BY &lt;a href=&quot;#&quot;&gt;EDUCHAINMAGTHEMES&lt;/a&gt;</b:widget-setting>
+                <b:widget-setting name='content'>COPYRIGHT &amp;copy; 2026 EDUTECH. DESIGNED BY &lt;a href=&quot;#&quot;&gt;EDUCHAINMAGTHEMES&lt;/a&gt;</b:widget-setting>
               </b:widget-settings>
               <b:includable id='main'>
                 <div class='widget-content'><data:content/></div>
@@ -2744,9 +2758,9 @@ function trendingPosts(targetId, num) {
     </div>
 
     <!-- Slick Slider JS -->
-    <script src='https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js'/>
+    <script integrity='sha384-YGnnOBKslPJVs35GG0TtAZ4uO7BHpHlqJhs0XK3k6cuVb6EBtl+8xcvIIOKV5wB+' crossorigin='anonymous' src='https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js'/>
     <!-- SlickNav -->
-    <script src='https://cdn.jsdelivr.net/npm/slicknav@1.0.10/dist/jquery.slicknav.min.js'/>
+    <script integrity='sha384-K8vgMejKanewSOz3u1AflW8kbXDczQfSTBrMKOlJa31PBa1mm2Xo2um82Wz+rG3r' crossorigin='anonymous' src='https://cdn.jsdelivr.net/npm/slicknav/dist/jquery.slicknav.min.js'/>
 
     <script type='text/javascript'>
 //<![CDATA[
@@ -2891,7 +2905,11 @@ $(document).ready(function(){
       }
       if (avatarEl && authorName) {
         var initial = authorName.charAt(0).toUpperCase();
-        avatarEl.innerHTML = '<div style="width:70px;height:70px;border-radius:50%;background:#2C91E1;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;font-family:Roboto,sans-serif;margin-bottom:5px;">' + initial + '</div>';
+        var avatarDiv = document.createElement('div');
+        avatarDiv.style.cssText = 'width:70px;height:70px;border-radius:50%;background:#2C91E1;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;font-family:Roboto,sans-serif;margin-bottom:5px;';
+        avatarDiv.textContent = initial;
+        avatarEl.innerHTML = '';
+        avatarEl.appendChild(avatarDiv);
       }
 
       // JS-based breadcrumb (ensure it shows above the post title)
@@ -2918,12 +2936,12 @@ $(document).ready(function(){
       crumb += '<a href="/">Home</a>';
       if (labels.length > 0) {
         crumb += '<span class="sep">&gt;</span>';
-        crumb += '<a href="' + labels[0].href + '">' + labels[0].textContent.trim() + '</a>';
+        crumb += '<a href="' + safeUrl(labels[0].href) + '">' + escapeHtml(labels[0].textContent.trim()) + '</a>';
       }
       crumb += '<span class="sep">&gt;</span>';
       var postTitle = document.querySelector('.post-title');
       var titleText = postTitle ? postTitle.textContent.trim() : document.title;
-      crumb += '<span class="current">' + titleText + '</span>';
+      crumb += '<span class="current">' + escapeHtml(titleText) + '</span>';
       crumb += '</div>';
       // Insert before the first post
       var firstPost = mainContent.querySelector('.blog-posts, .post-outer-container, .post-outer');
